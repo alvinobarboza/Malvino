@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/default.xhtml">
+	<f:metadata name="metadata" />
+	<script src="meu_script.js"></script>
+	<ui:define name="conteudo">
+		<center>
+			<div style="font-size: 16px;" id="texto">
+				<hr></hr>
+				<hr></hr>
+				<h:outputText
+					value="||||||||||||||||||||||||||||| Seja bem vindo a opção de ajuda do nosso sistema! |||||||||||||||||||||||||||||" />
+				<hr></hr>
+				<hr></hr>
+				<div align="left">
+				* Seja qual for a página que você estiver, terá a opção abaixo do topo da tela no lado direito, onde poderá alterar o
+				<br></br> 
+				 tamanho da fonte da página que está sendo visualizada no momento!
+				<br></br> 
+				<br></br>
+				<p:fieldset legend="Primeiro acesso ao sistema:" toggleable="true">
+				-> O usuário só terá acesso ao sistema se for via conexão na intranet da organização;
+				</p:fieldset>
+				<br></br> 
+				<p:fieldset legend="ANTES DE LOGAR" toggleable="true">
+				* Após acessar a página inicial será disponibilizado para visualização os veículos dísponiveis, o usuário terá um menu 
+				<br></br>				
+				ao lado esquerdo, onde poderá acessar tais submenus: 
+				<br></br> 
+				<br></br>
+				<p:fieldset legend="Logar" toggleable="true">
+				-> Fazer Login;
+				<br></br>
+				<br></br>
+				-----> Só farão login no sistema usuários quem forem opera-ló;
+                </p:fieldset>
+				<br></br>
+                <p:fieldset legend="Principal" toggleable="true">
+				-> Home;
+				<br></br>
+				<br></br>
+				-----> Tela onde colaboradores visualizarão se tem algum veículo disponível no momento;
+			   <hr></hr>
+				-> Help;
+				<br></br>
+				<br></br>
+				-----> Auxiliara o usuário nas duvidas frequentes em relação ao sistema.
+				</p:fieldset>
+				</p:fieldset>
+				<br></br>
+				<p:fieldset legend="APÓS LOGAR:" toggleable="true">
+				* A página inicial será disponibilizado para visualização os veículos dísponiveis, o usuário terá um menu 
+				<br></br>				
+				ao lado esquerdo, onde poderá acessar tais submenus: 
+				<br></br>
+				<br></br>
+				<p:fieldset legend="Principal" toggleable="true">
+				-> Home;
+				<br></br>
+				<br></br>
+				-----> Tela onde usuários do sistema visualizarão se tem algum veículo disponível no momento podendo ser utilizado
+				<br></br>
+				ou manda-lo para manutenção;
+				<hr></hr>
+				-> Sair;
+				<br></br>
+				<br></br>
+				-----> Sair do sistema.
+			   <hr></hr>
+				-> Help;
+				<br></br>
+				<br></br>
+				-----> Auxiliara o usuário nas duvidas frequentes em relação ao sistema.
+				</p:fieldset>
+				<br></br>
+				<br></br>
+				<p:fieldset legend="Cadastros" toggleable="true">
+				-> Usuario;
+				<br></br>
+				<br></br>
+				-----> Tela de usuários cadastrados, podendo se realizar tais operações:
+				<br></br>
+				<br></br>
+				* Cadastro de novo usuário;
+				<br></br>
+				* Atualizar dados de usuário cadastrados;
+				<br></br>
+				* Excluir dados de usuário cadastrados;
+				<hr></hr>
+				-> Veiculo;
+				<br></br>
+				<br></br>
+				-----> Tela de veículos cadastrados, podendo se realizar tais operações:
+				<br></br>
+				<br></br>
+				* Cadastro de novo veículo;
+				<br></br>
+				* Atualizar dados de veículo cadastrados;
+				<br></br>
+				* Excluir dados de veículo cadastrados;.
+			   <hr></hr>
+				-> Rota;
+				<br></br>
+				<br></br>
+				-----> Tela de rotas cadastradas, podendo se realizar tais operações:
+				<br></br>
+				<br></br>
+				* Cadastro de uma nova rota;
+				<br></br>
+				* Atualizar dados de rotas cadastradas;
+				<br></br>
+				* Excluir dados de rotas cadastradas;.
+				</p:fieldset>
+				<br></br>
+				<br></br>
+				<p:fieldset legend="Veículos" toggleable="true">
+				-> Disponiveis;
+				<br></br>
+				<br></br>
+				-----> Tela de visualizar veículos disponiveis, podendo se realizar tais operações:
+				<br></br>
+				<br></br>
+				* Realizar uma viagem;
+				<br></br>
+				* Realizar uma manutenção do veículo;
+				<hr></hr>
+				-> Em uso;
+				<br></br>
+				<br></br>
+				-----> Tela de visualizar veículos em uso, podendo se realizar tais operações:
+				<br></br>
+				<br></br>
+				* Finalizar viagem;
+			   <hr></hr>
+				-> Em manutenção;
+				<br></br>
+				<br></br>
+				-----> Tela de visualizar veículos em manutenção, podendo se realizar tais operações:
+				<br></br>
+				<br></br>
+				* Finalizar manutenção do veículo;
+				</p:fieldset>
+				</p:fieldset>
+				<hr></hr>
+				</div>
+			</div>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>

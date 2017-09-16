@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/default.xhtml">
+	<f:metadata name="metadata">
+		<f:event listener="#{jogadoresBean.list}" type="preRenderView" />
+	</f:metadata>
+	<script src="meu_script.js"></script>
+	<ui:define name="conteudo">
+		<center>
+			<div style="font-size: 16px;" id="texto">
+				<h:outputText value="Usuários Cadastrados" />
+				<hr></hr>
+				<div class="form-group">
+					<h:form>
+						<p:outputLabel value="Pesquisar por Nome: " />
+						<p:inputText maxlength="50" size="30"
+							value="#{jogadoresBean.jogadores.nome}" />
+						<h:commandButton value="Pesquisar"
+							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+							actionListener="#{jogadoresBean.list()}" update=":frm:gridjogadores">
+						</h:commandButton>
+					</h:form>
+				</div>
+				<hr></hr>
+				<h:form id="frm">
+					<p:dataTable emptyMessage="Nenhum registro
+				 encontrado"
+						id="gridjogadores" value="#{jogadoresBean.listJogadores}" var="jogadores"
+						paginator="true" rows="4">
+
+						<f:facet name="header">
+							<p:button value="Cadastrar" outcome="/pages/jogadores/crud.xhtml">
+								<f:param name="acao" value="new" />
+
+							</p:button>
+						</f:facet>
+						<p:column headerText="Código">
+							<center>
+								<p:outputLabel value="#{jogadores.idJogador}" />
+							</center>
+						</p:column>
+						<p:column headerText="Nome">
+							<p:outputLabel value="#{jogadores.nome}">
+							</p:outputLabel>
+						</p:column>
+						<p:column headerText="Perfis">
+							<center>
+								<p:outputLabel value="#{jogadores.perfis.nome}">
+								</p:outputLabel>
+							</center>
+						</p:column>
+						<div class="principal principal-home">
+							<p:column>
+								<p:column>
+									<p:button icon="ui-icon-arrowrefresh-1-w" value="Editar"
+										title="Editar" outcome="/pages/jogadores/crud.xhtml">
+										<f:param name="acao" value="edit" />
+										<f:param name="codigo" value="#{jogadores.idJogador}" />
+									</p:button>
+								</p:column>
+							</p:column>
+							<p:column headerText="Opções">
+								<p:button icon="ui-icon-close" value="Excluir" title="Excluir"
+									outcome="/pages/jogadores/crud.xhtml">
+									<f:param name="acao" value="delete" />
+									<f:param name="codigo" value="#{jogadores.idJogador}" />
+								</p:button>
+							</p:column>
+
+							<p:column>
+								<p:button value="Detalhes" title="Detalhes"
+									outcome="/pages/jogadores/crud.xhtml">
+									<f:param name="acao" value="details" />
+									<f:param name="codigo" value="#{jogadores.idJogador}" />
+								</p:button>
+							</p:column>
+						</div>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>
+
+
+
+
+
+
