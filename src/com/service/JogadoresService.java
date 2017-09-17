@@ -1,13 +1,19 @@
 package com.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
+import com.bean.JogadoresBean;
 import com.dao.JogadoresDAO;
 import com.model.Jogadores;
 import com.model.Perfis;
@@ -16,7 +22,8 @@ import com.model.Perfis;
 
 @Path("/JogadoresService") 
 public class JogadoresService {
-
+	
+	private JogadoresBean bean;
 	private JogadoresDAO jogadoresDAO;
 	private Jogadores jogadores;
 	private Perfis perfis;
@@ -31,14 +38,20 @@ public class JogadoresService {
 		this.jogadoresDAO = jogadoresDAO;
 	}
 	
+	public JogadoresBean getBean() {
+		if (bean == null)
+			bean = new JogadoresBean();
+		return bean;
+	}
+
+	public void setBean(JogadoresBean bean) {
+		this.bean = bean;
+	}
 	
-	/**
-	 * @return
-	 */
 	@GET 
 	@Path("/Jogadores") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public Jogadores[] Jogadores() {
+	public Jogadores[] getJogadores() {
 	
 		
 		List<Jogadores> jogadores = getJogadoresDAO().getBeans();
@@ -48,26 +61,8 @@ public class JogadoresService {
 		int i = 0;
 
 		for (Jogadores jogador : jogadores){			
-			
-			Jogadores dto = new Jogadores();
-			
-			dto.getClas().setDescricao(jogador.getClas().getDescricao());
-			dto.getClas().setNome(jogador.getClas().getNome());
-			dto.getClas().setQtdMenbros(jogador.getClas().getQtdMenbros());
-			dto.getClas().setIdCla(jogador.getClas().getIdCla());
-			
-			dto.getPerfis().setDescricao(jogador.getPerfis().getDescricao());
-			dto.getPerfis().setNome(jogador.getPerfis().getNome());
-			dto.getPerfis().setIdPerfil(jogador.getPerfis().getIdPerfil());
-			
-			dto.setEmail(jogador.getEmail());
-			dto.setNome(jogador.getNome());
-			dto.setGenero(jogador.getGenero());
-			dto.setLogin(jogador.getLogin());
-			dto.setSenha(jogador.getSenha());
-			dto.setIdJogador(jogador.getIdJogador());
-			
-			dtoList[i] = dto;
+					
+			dtoList[i] = getBean().cloneToDTO(jogador);
 			
 			i++;
 		}
@@ -80,36 +75,36 @@ public class JogadoresService {
 	@GET 
 	@Path("/Jogadores/{idJogador}") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public Jogadores Jogadores(@PathParam("idJogador") int codigo) {
+	public Jogadores getJogador(@PathParam("idJogador") int codigo) {
 
 		Jogadores jogador = getJogadoresDAO().getBean(codigo);
-		
-		Jogadores dto = new Jogadores();
-		
-		dto.getClas().setDescricao(jogador.getClas().getDescricao());
-		dto.getClas().setNome(jogador.getClas().getNome());
-		dto.getClas().setQtdMenbros(jogador.getClas().getQtdMenbros());
-		dto.getClas().setIdCla(jogador.getClas().getIdCla());
-		
-		dto.getPerfis().setDescricao(jogador.getPerfis().getDescricao());
-		dto.getPerfis().setNome(jogador.getPerfis().getNome());
-		dto.getPerfis().setIdPerfil(jogador.getPerfis().getIdPerfil());
-		
-		dto.setEmail(jogador.getEmail());
-		dto.setNome(jogador.getNome());
-		dto.setGenero(jogador.getGenero());
-		dto.setLogin(jogador.getLogin());
-		dto.setSenha(jogador.getSenha());
-		dto.setIdJogador(jogador.getIdJogador());
 
-		return dto;
+		return getBean().cloneToDTO(jogador);
 		
 	}
+	
+	@GET 
+	@Path("/login") 
+	@Produces(MediaType.APPLICATION_JSON)
+	public Jogadores autenticar(@QueryParam("login") String login, @QueryParam("senha") String senha ) throws SQLException {
 
-	public void salvar(Jogadores jogadores) {
+		return getBean().cloneToDTO(getJogadoresDAO().existOne(login, senha));
+		
+	
+	}
+	
+	
+	@POST
+	@Path("/Salvar")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response salvar(Jogadores jogadores) {
+		
+		System.out.println(jogadores.toString());
+		
+		return Response.ok().build();
 
-		getJogadoresDAO().salvar(jogadores);
-		getJogadoresDAO().commit();
+		//getJogadoresDAO().salvar(jogadores);
+		//getJogadoresDAO().commit();
 
 	}
 

@@ -35,13 +35,13 @@ public class LoginBean extends BaseBean {
 
 	public String autenticar() {
 		try {
-			int idJogador = getJogadoresDAO().existOne(getJogadores().getLogin(), getJogadores().getSenha());
+			Jogadores idJogador = getJogadoresDAO().existOne(getJogadores().getLogin(), getJogadores().getSenha());
 
-			if (idJogador == 0) {
+			if (idJogador.getIdJogador() == 0) {
 				showInfo("Jogadores e/ou senha inválidos");
 				return null;
 			} else {
-				setJogadores(getJogadoresDAO().getBean(idJogador));
+				setJogadores(getJogadoresDAO().getBean(idJogador.getIdJogador()));
 				showInfo("Usuário autenticado com sucesso!");
 				return "/pages/jogadores/list.xhtml?faces-redirect=true";
 			}

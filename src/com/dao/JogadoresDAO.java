@@ -22,9 +22,9 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		super(Jogadores.class);
 	}
 
-	public int existOne(String login, String senha) throws SQLException {
+	public Jogadores existOne(String login, String senha) throws SQLException {
 		
-		int retorno = 0;
+		Jogadores retorno = new Jogadores();
 		
 		Jogadores jogadores = new Jogadores();
 		JogadoresDAO dao = new JogadoresDAO();
@@ -37,7 +37,13 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		List<Jogadores> list = dao.getBeansByExample(jogadores);
 		
 		for(Jogadores jogador: list){
-			retorno = jogador.getIdJogador();
+			if(jogador == null){
+				retorno.setLogin("erro");
+				
+			}else{
+				retorno = jogador;
+			}
+				
 		}
 		
 		return retorno;
