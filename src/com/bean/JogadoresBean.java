@@ -210,6 +210,9 @@ public class JogadoresBean extends BaseBean implements IBO, ICRUDBean {
 		
 		Jogadores jogador = new Jogadores();
 		
+		if(bruto==null){
+			jogador.setNome("Não Existe");
+		}else{
 		jogador.getClas().setDescricao(bruto.getClas().getDescricao());
 		jogador.getClas().setNome(bruto.getClas().getNome());
 		jogador.getClas().setQtdMenbros(bruto.getClas().getQtdMenbros());
@@ -225,7 +228,7 @@ public class JogadoresBean extends BaseBean implements IBO, ICRUDBean {
 		jogador.setLogin(bruto.getLogin());
 		jogador.setSenha(bruto.getSenha());
 		jogador.setIdJogador(bruto.getIdJogador());
-		
+		}
 		return jogador;
 	}
 }

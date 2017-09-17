@@ -53,7 +53,6 @@ public class JogadoresService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Jogadores[] getJogadores() {
 	
-		
 		List<Jogadores> jogadores = getJogadoresDAO().getBeans();
 
 		Jogadores[] dtoList = new Jogadores[jogadores.size()];
@@ -69,7 +68,6 @@ public class JogadoresService {
 
 		return dtoList;
 		
-
 	}
 	
 	@GET 
@@ -89,22 +87,18 @@ public class JogadoresService {
 	public Jogadores autenticar(@QueryParam("login") String login, @QueryParam("senha") String senha ) throws SQLException {
 
 		return getBean().cloneToDTO(getJogadoresDAO().existOne(login, senha));
-		
 	
 	}
-	
 	
 	@POST
 	@Path("/Salvar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response salvar(Jogadores jogadores) {
 		
-		System.out.println(jogadores.toString());
+		getJogadoresDAO().salvar(jogadores);
+		getJogadoresDAO().commit();
 		
 		return Response.ok().build();
-
-		//getJogadoresDAO().salvar(jogadores);
-		//getJogadoresDAO().commit();
 
 	}
 

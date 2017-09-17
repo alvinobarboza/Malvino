@@ -50,7 +50,7 @@
   </servlet-mapping>
   <!--====================== Configuração para WebService ======================-->
   <servlet> 
-      <servlet-name>Malvino WebServece</servlet-name> 
+      <servlet-name>Malvino WebService</servlet-name> 
       <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class> 
       <init-param> 
          <param-name>jersey.config.server.provider.packages</param-name> 
@@ -58,7 +58,7 @@
       </init-param> 
    </servlet> 
    <servlet-mapping> 
-      <servlet-name>Malvino WebServece</servlet-name> 
+      <servlet-name>Malvino WebService</servlet-name> 
       <url-pattern>/rest/*</url-pattern> 
    </servlet-mapping>  
 </web-app>

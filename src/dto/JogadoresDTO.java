@@ -70,6 +70,16 @@ public class JogadoresDTO {
 	private String genero;
 	
 	private int id_perfil;
+	
+	private int id_cla;
+
+	public int getId_cla() {
+		return id_cla;
+	}
+
+	public void setId_cla(int id_cla) {
+		this.id_cla = id_cla;
+	}
 
 
 }

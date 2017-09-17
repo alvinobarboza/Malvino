@@ -37,30 +37,16 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		List<Jogadores> list = dao.getBeansByExample(jogadores);
 		
 		for(Jogadores jogador: list){
-			if(jogador == null){
-				retorno.setLogin("erro");
+			if(jogador.getLogin() == login){
+				retorno = jogador;
 				
 			}else{
-				retorno = jogador;
+				retorno.setLogin("Login errado");;
 			}
 				
 		}
 		
 		return retorno;
 	}
-
-	/*public int existOne(String codigo) throws SQLException {
-		int retorno = 0;
-
-		Query q = em.createNativeQuery(" select * " + 
-				"	from malvino.jogadores where  " + " id_jogador = '" + codigo + "'");
-
-		ResultSet rs = (ResultSet) q.getResultList();
-
-		while (rs.next()) {
-			retorno = rs.getInt("id_jogador");
-		}
-		return retorno;
-	}*/
 
 }
