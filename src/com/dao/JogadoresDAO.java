@@ -1,15 +1,11 @@
 package com.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
+
 
 import javax.persistence.EntityManager;
-
-import javax.persistence.Query;
-
-import org.hibernate.SQLQuery;
 
 import com.model.Jogadores;
 
@@ -25,25 +21,26 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 	public Jogadores existOne(String login, String senha) throws SQLException {
 		
 		Jogadores retorno = new Jogadores();
+		retorno.setLogin("Login errado");
 		
-		Jogadores jogadores = new Jogadores();
-		JogadoresDAO dao = new JogadoresDAO();
-		
-		jogadores.setLogin(login);
-		jogadores.setSenha(senha);
+		String sql = "select * from malvino.jogadores j "
+				+ "where j.ds_login = '"+login+"' and j.ds_senha = '"+senha+"'";
 		
 		
+		PreparedStatement ps = getConnection().prepareStatement(sql);
 		
-		List<Jogadores> list = dao.getBeansByExample(jogadores);
+		ResultSet rs = ps.executeQuery() ;
 		
-		for(Jogadores jogador: list){
-			if(jogador.getLogin() == login){
-				retorno = jogador;
-				
-			}else{
-				retorno.setLogin("Login errado");;
-			}
-				
+		while(rs.next()){
+		
+			retorno.setIdJogador(rs.getInt("id_jogador"));
+			retorno.getPerfis().setIdPerfil(rs.getInt("id_perfil"));
+			retorno.setNome(rs.getString("ds_nome"));
+			retorno.setLogin(rs.getString("ds_login"));
+			retorno.setSenha(rs.getString("ds_senha"));
+			retorno.setGenero(rs.getString("ds_genero"));
+			retorno.getClas().setIdCla(rs.getInt("id_cla"));
+			
 		}
 		
 		return retorno;

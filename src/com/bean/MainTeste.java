@@ -1,49 +1,48 @@
 package com.bean;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
-import com.dao.ClasDAO;
+
 import com.dao.JogadoresDAO;
-import com.dao.PerfisDAO;
-import com.model.Clas;
 import com.model.Jogadores;
-import com.model.Perfis;
+
 
 public class MainTeste {
 	public static void main(String [] args) throws SQLException{
 		
+		Jogadores retorno = new Jogadores();
 		JogadoresDAO dao = new JogadoresDAO();
-		Jogadores jogadores = new Jogadores();
-		PerfisDAO perfisDAO = new PerfisDAO();
-		Perfis perfis = new Perfis();
-		ClasDAO clasDAO = new ClasDAO();
-		Clas clas = new Clas();
 		
-		clas = clasDAO.getBean(1);
-		perfis = perfisDAO.getBean(2);
+		retorno.setLogin("Login errado");;
 		
-	/*	jogadores.setNome("Jose");
-		jogadores.setEmail("jose@email.com");
-		jogadores.setLogin("naovalenadatbm");
-		jogadores.setSenha("1234");
-		jogadores.setGenero("M");
-		jogadores.setPerfis(perfis);
-		jogadores.setCla(clas);
+		String login = "alvino13";
+		String senha = "1234";
 		
-		dao.salvar(jogadores);
-		dao.commit();
-		*/
+		String sql = "select * from malvino.jogadores j "
+				+ "where j.ds_login = '"+login+"' and j.ds_senha = '"+senha+"'";
 		
-		List<Jogadores> lista = dao.getBeans();
 		
-		for(Jogadores teste : lista){
-			System.out.println("id = "+ teste.getIdJogador()+
-					"Nome: " + teste.getNome() + "\n"
-					+"Clã: "+teste.getClas().getNome()+"\n"
-					+"Perfil: "+teste.getPerfis().getNome()+"\n\n"
-					+"teste: "+teste.getPerfis().getDescricao());
+		PreparedStatement ps = dao.getConnection().prepareStatement(sql);
+		
+		ResultSet rs = ps.executeQuery() ;
+		
+		while(rs.next()){
+			
+				retorno.setLogin(rs.getString("ds_login"));
+			
 		}
+	
+		
+		System.out.println(login);
+		System.out.println(retorno.getLogin());
+		
+		
+	
+		
+			System.out.println(retorno.getLogin());
+	
 		
 	}
 }
