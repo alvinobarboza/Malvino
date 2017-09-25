@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,8 +27,7 @@ public class JogadoresService {
 	
 	private JogadoresBean bean;
 	private JogadoresDAO jogadoresDAO;
-	private Jogadores jogadores;
-	private Perfis perfis;
+
 
 	private JogadoresDAO getJogadoresDAO() {
 		if (jogadoresDAO == null)
@@ -84,9 +85,9 @@ public class JogadoresService {
 	@GET 
 	@Path("/login") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public Jogadores autenticar(@QueryParam("login") String login, @QueryParam("senha") String senha ) throws SQLException {
+	public boolean autenticar(@QueryParam("login") String login, @QueryParam("senha") String senha ) throws SQLException {
 
-		return getBean().cloneToDTO(getJogadoresDAO().existOne(login, senha));
+		return getJogadoresDAO().login(login, senha);
 	
 	}
 	
@@ -96,6 +97,30 @@ public class JogadoresService {
 	public Response salvar(Jogadores jogadores) {
 		
 		getJogadoresDAO().salvar(jogadores);
+		getJogadoresDAO().commit();
+		
+		return Response.ok().build();
+
+	}
+	
+	@PUT
+	@Path("/Atualizar")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response atualizar(Jogadores jogadores) {
+		
+		getJogadoresDAO().atualizar(jogadores);
+		getJogadoresDAO().commit();
+		
+		return Response.ok().build();
+
+	}
+	
+	@DELETE
+	@Path("/Deletar")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deletar(Jogadores jogadores) {
+		
+		getJogadoresDAO().excluir(jogadores);
 		getJogadoresDAO().commit();
 		
 		return Response.ok().build();

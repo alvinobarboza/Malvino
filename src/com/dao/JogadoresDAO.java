@@ -45,5 +45,27 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		
 		return retorno;
 	}
+	public boolean login(String login, String senha) throws SQLException {
+		
+		boolean retorno = false;
+		
+		String sql = "select * from malvino.jogadores j "
+				+ "where j.ds_login = '"+login+"' and j.ds_senha = '"+senha+"'";
+		
+		
+		PreparedStatement ps = getConnection().prepareStatement(sql);
+		
+		ResultSet rs = ps.executeQuery() ;
+		
+		while(rs.next()){
+			if(rs.getString("ds_login").equals(login) 
+					& rs.getString("ds_senha").equals(senha)){
+				retorno = true;
+			}
+			
+		}
+		
+		return retorno;
+	}
 
 }

@@ -7,6 +7,7 @@ import javax.faces.bean.SessionScoped;
 
 import com.dao.ClasDAO;
 import com.model.Clas;
+import com.model.Jogadores;
 
 @ManagedBean
 @SessionScoped
@@ -129,6 +130,7 @@ public class ClasBean extends BaseBean implements IBO, ICRUDBean {
 	@Override
 	public void save() {
 		try {
+			
 			validateModel();
 			validateRule();
 			if (isMessageError() == false && isMessageAlert() == false) {
@@ -172,5 +174,20 @@ public class ClasBean extends BaseBean implements IBO, ICRUDBean {
 	public void existDependences() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public Clas cloneToDTO(Clas bruto){
+		
+		Clas cla = new Clas();
+		
+		if(bruto==null){
+			cla.setNome("Não Existe");
+		}else{
+		cla.setNome(bruto.getNome());
+		cla.setDescricao(bruto.getDescricao());
+		cla.setQtdMenbros(bruto.getQtdMenbros());
+		cla.setIdCla(bruto.getIdCla());
+		}
+		return cla;
 	}
 }
