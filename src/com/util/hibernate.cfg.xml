@@ -21,6 +21,7 @@
 		<property name="hibernate.cache.use_second_level_cache">false</property>
 		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
 		<property name="hibernate.generate_statistics">false</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 
 		<!-- Mostra o SQL -->
 		<property name="show_sql">true</property>

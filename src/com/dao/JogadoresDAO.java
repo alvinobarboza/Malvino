@@ -3,9 +3,11 @@ package com.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import org.hibernate.Query;
 
 import com.model.Jogadores;
 
@@ -45,27 +47,19 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		
 		return retorno;
 	}
+	
 	public boolean login(String login, String senha) throws SQLException {
-		
-		boolean retorno = false;
-		
-		String sql = "select * from malvino.jogadores j "
-				+ "where j.ds_login = '"+login+"' and j.ds_senha = '"+senha+"'";
-		
-		
-		PreparedStatement ps = getConnection().prepareStatement(sql);
-		
-		ResultSet rs = ps.executeQuery() ;
-		
-		while(rs.next()){
-			if(rs.getString("ds_login").equals(login) 
-					& rs.getString("ds_senha").equals(senha)){
-				retorno = true;
-			}
-			
-		}
-		
-		return retorno;
+
+		final Query query = session.createQuery("select j from Jogadores j where j.login = :login and j.senha = :senha");
+
+		query.setString("login", login);
+		query.setString("senha", senha);
+
+		@SuppressWarnings("unchecked")
+		final List<Jogadores> jogadores = query.list();
+
+		return !jogadores.isEmpty();
+
 	}
 
 }
