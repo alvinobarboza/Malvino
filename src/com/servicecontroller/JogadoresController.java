@@ -25,8 +25,6 @@ public class JogadoresController {
 		this.temp = temp;
 	}
 	
-	public 
-	
 	public Jogadores cloneToDTO(Jogadores bruto){
 		
 		Jogadores jogador = new Jogadores();
