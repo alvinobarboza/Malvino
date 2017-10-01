@@ -118,12 +118,16 @@ public class JogadoresService {
 	@DELETE
 	@Path("/Deletar")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deletar(Jogadores jogadores) {
+	public String deletar(Jogadores jogadores) {
+		
+		//Jogadores jogadores = new Jogadores();
+		
+		//jogadores = getJogadoresDAO().getBean(codigo);
 		
 		getJogadoresDAO().excluir(jogadores);
 		getJogadoresDAO().commit();
 		
-		return Response.ok().build();
+		return "Deletado com sucesso";
 
 	}
 
