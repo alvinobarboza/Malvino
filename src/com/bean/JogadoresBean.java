@@ -178,7 +178,7 @@ public class JogadoresBean extends BaseBean implements IBO, ICRUDBean {
 		}
 		listJogadores = getJogadoresDAO().getBeans();
 		for (Jogadores item : listJogadores) {
-			if (getJogadores().getLogin().equals(item.getLogin())) {
+			if (getJogadores().getLogin().equals(item.getLogin())||getJogadores().getEmail().equals(item.getLogin())) {
 				super.showError("Login já em uso!");
 			}
 		}
@@ -204,31 +204,5 @@ public class JogadoresBean extends BaseBean implements IBO, ICRUDBean {
 	public void existDependences() {
 		// TODO Auto-generated method stub
 
-	}
-	
-	public Jogadores cloneToDTO(Jogadores bruto){
-		
-		Jogadores jogador = new Jogadores();
-		
-		if(bruto==null){
-			jogador.setNome("Não Existe");
-		}else{
-		jogador.getClas().setDescricao(bruto.getClas().getDescricao());
-		jogador.getClas().setNome(bruto.getClas().getNome());
-		jogador.getClas().setQtdMenbros(bruto.getClas().getQtdMenbros());
-		jogador.getClas().setIdCla(bruto.getClas().getIdCla());
-		
-		jogador.getPerfis().setDescricao(bruto.getPerfis().getDescricao());
-		jogador.getPerfis().setNome(bruto.getPerfis().getNome());
-		jogador.getPerfis().setIdPerfil(bruto.getPerfis().getIdPerfil());
-		
-		jogador.setEmail(bruto.getEmail());
-		jogador.setNome(bruto.getNome());
-		jogador.setGenero(bruto.getGenero());
-		jogador.setLogin(bruto.getLogin());
-		jogador.setSenha(bruto.getSenha());
-		jogador.setIdJogador(bruto.getIdJogador());
-		}
-		return jogador;
 	}
 }

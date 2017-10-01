@@ -26,10 +26,12 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		retorno.setLogin("Login errado");
 		
 		String sql = "select * from malvino.jogadores j "
-				+ "where j.ds_login = '"+login+"' and j.ds_senha = '"+senha+"'";
+				+ "where j.ds_login = ? and j.ds_senha = ?";
 		
 		
 		PreparedStatement ps = getConnection().prepareStatement(sql);
+		ps.setString(1, login);
+		ps.setString(2, senha);
 		
 		ResultSet rs = ps.executeQuery() ;
 		

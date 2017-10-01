@@ -1,85 +1,57 @@
-package dto;
+package com.servicecontroller;
 
-public class JogadoresDTO {
-	public int getIdJogador() {
-		return idJogador;
-	}
+import com.dao.JogadoresDAO;
+import com.model.Jogadores;
 
-	public void setIdJogador(int idJogador) {
-		this.idJogador = idJogador;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
-
-	public int getId_perfil() {
-		return id_perfil;
-	}
-
-	public void setId_perfil(int id_perfil) {
-		this.id_perfil = id_perfil;
-	}
-
-	private int idJogador;
+public class JogadoresController {
 	
-	private String nome;
+	JogadoresDAO dao;
+	Jogadores temp;
 	
-	private String login;
-	
-	private String senha;
-	
-	private String email;
-	
-	private String genero;
-	
-	private int id_perfil;
-	
-	private int id_cla;
-
-	public int getId_cla() {
-		return id_cla;
+	public JogadoresDAO getDao() {
+		if(dao == null)
+			dao = new JogadoresDAO();
+		return dao;
 	}
-
-	public void setId_cla(int id_cla) {
-		this.id_cla = id_cla;
+	public void setDao(JogadoresDAO dao) {
+		this.dao = dao;
 	}
-
-
+	public Jogadores getTemp() {
+		if(temp == null)
+			temp = new Jogadores();
+		return temp;
+	}
+	public void setTemp(Jogadores temp) {
+		this.temp = temp;
+	}
+	
+	public 
+	
+	public Jogadores cloneToDTO(Jogadores bruto){
+		
+		Jogadores jogador = new Jogadores();
+		
+		if(bruto==null){
+			jogador.setNome("Não Existe");
+		}else{
+		jogador.getClas().setDescricao(bruto.getClas().getDescricao());
+		jogador.getClas().setNome(bruto.getClas().getNome());
+		jogador.getClas().setQtdMenbros(bruto.getClas().getQtdMenbros());
+		jogador.getClas().setIdCla(bruto.getClas().getIdCla());
+		
+		jogador.getPerfis().setDescricao(bruto.getPerfis().getDescricao());
+		jogador.getPerfis().setNome(bruto.getPerfis().getNome());
+		jogador.getPerfis().setIdPerfil(bruto.getPerfis().getIdPerfil());
+		
+		jogador.setEmail(bruto.getEmail());
+		jogador.setNome(bruto.getNome());
+		jogador.setGenero(bruto.getGenero());
+		jogador.setLogin(bruto.getLogin());
+		jogador.setSenha(bruto.getSenha());
+		jogador.setIdJogador(bruto.getIdJogador());
+		}
+		return jogador;
+	}
+	
+	
 }

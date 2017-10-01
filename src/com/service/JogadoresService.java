@@ -15,39 +15,39 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+
 import com.bean.JogadoresBean;
 import com.dao.JogadoresDAO;
 import com.model.Jogadores;
+import com.model.Logar;
 import com.model.Perfis;
+import com.servicecontroller.JogadoresController;
 
 
 
 @Path("/JogadoresService") 
 public class JogadoresService {
 	
-	private JogadoresBean bean;
+	private JogadoresController controller;
+
 	private JogadoresDAO jogadoresDAO;
 
-
+	public JogadoresController getController() {
+		if(controller == null)
+			controller=new JogadoresController();
+		return controller;
+	}
+	
+	
+	public void setController(JogadoresController controller) {
+		this.controller = controller;
+	}
 	private JogadoresDAO getJogadoresDAO() {
 		if (jogadoresDAO == null)
 			jogadoresDAO = new JogadoresDAO();
 		return jogadoresDAO;
 	}
 
-	private void setJogadoresDAO(JogadoresDAO jogadoresDAO) {
-		this.jogadoresDAO = jogadoresDAO;
-	}
-	
-	public JogadoresBean getBean() {
-		if (bean == null)
-			bean = new JogadoresBean();
-		return bean;
-	}
-
-	public void setBean(JogadoresBean bean) {
-		this.bean = bean;
-	}
 	
 	@GET 
 	@Path("/Jogadores") 
@@ -62,7 +62,7 @@ public class JogadoresService {
 
 		for (Jogadores jogador : jogadores){			
 					
-			dtoList[i] = getBean().cloneToDTO(jogador);
+			dtoList[i] = getController().cloneToDTO(jogador);
 			
 			i++;
 		}
@@ -78,16 +78,27 @@ public class JogadoresService {
 
 		Jogadores jogador = getJogadoresDAO().getBean(codigo);
 
-		return getBean().cloneToDTO(jogador);
+		return getController().cloneToDTO(jogador);
 		
 	}
 	
-	@GET 
-	@Path("/login") 
+	@POST
+	@Path("/login")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public boolean autenticar(@QueryParam("login") String login, @QueryParam("senha") String senha ) throws SQLException {
-
-		return getJogadoresDAO().login(login, senha);
+	public Response autenticar(Logar logar) throws SQLException {
+		
+		String login = logar.getLogin();
+		String senha = logar.getSenha();
+		
+		//System.out.println(logar.getLogin());
+		
+		if(getJogadoresDAO().login(login, senha)){
+			return Response.ok().entity(logar).build();
+		}else{	
+			logar.setLogin(logar.getLogin()+" Usuário não encontrado");
+			return Response.status(400).entity(logar).build();
+		}
 	
 	}
 	
@@ -96,11 +107,14 @@ public class JogadoresService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response salvar(Jogadores jogadores) {
 		
-		getJogadoresDAO().salvar(jogadores);
-		getJogadoresDAO().commit();
-		
-		return Response.ok().build();
-
+		if(){
+			
+			getJogadoresDAO().salvar(jogadores);
+			getJogadoresDAO().commit();
+			return Response.ok().entity(logar).build();
+		}else{	
+			return Response.status(400).entity(logar).build();
+		}
 	}
 	
 	@PUT
@@ -118,7 +132,7 @@ public class JogadoresService {
 	@DELETE
 	@Path("/Deletar")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String deletar(Jogadores jogadores) {
+	public Response deletar(Jogadores jogadores) {
 		
 		//Jogadores jogadores = new Jogadores();
 		
@@ -127,7 +141,7 @@ public class JogadoresService {
 		getJogadoresDAO().excluir(jogadores);
 		getJogadoresDAO().commit();
 		
-		return "Deletado com sucesso";
+		return Response.status(200, "Deletado com sucesso").build();
 
 	}
 
