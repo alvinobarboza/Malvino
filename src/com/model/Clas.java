@@ -28,6 +28,9 @@ public class Clas extends BaseModel {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clas")
 	private List<Jogadores> jogadores;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clas")
+	private List<JogadoresJogos> jogadoresJogos;
 
 	public List<Jogadores> getJogadores() {
 		return jogadores;

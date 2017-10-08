@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -41,13 +40,15 @@ public class Jogadores extends BaseModel {
 	private String genero;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_perfil")
+	@JoinColumn(name = "fk_perfil")
 	private Perfis perfis;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_cla")
+	@JoinColumn(name = "fk_cla")
 	private Clas clas;
-
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "jogadores")
+	private List<JogadoresJogos> jogadoresJogos;
 
 	public int getIdJogador() {
 		return idJogador;

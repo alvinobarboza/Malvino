@@ -25,14 +25,6 @@ public class Perfis extends BaseModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "perfis")
 	private List<Jogadores> jogadores;
 
-	public List<Jogadores> getJogadores() {
-		return jogadores;
-	}
-
-	public void setJogadores(List<Jogadores> jogadores) {
-		this.jogadores = jogadores;
-	}
-
 	public int getIdPerfil() {
 		return idPerfil;
 	}

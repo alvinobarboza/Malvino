@@ -1,10 +1,14 @@
 package com.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,6 +30,15 @@ public class Jogos {
 	
 	@Column(name = "nu_ativo")
 	boolean Ativo;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "jogos")
+	private List<JogadoresJogos> jogadoresJogos;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "jogos")
+	private List<JogosCategoria> jogosCategorias;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "jogos")
+	private List<JogosPublicidade> jogosPublicidade;
 
 	public int getIdJogo() {
 		return idJogo;
