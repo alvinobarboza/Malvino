@@ -1,5 +1,7 @@
 package com.servicecontroller;
 
+import java.util.List;
+
 import com.dao.JogadoresDAO;
 import com.model.Jogadores;
 
@@ -7,6 +9,7 @@ public class JogadoresController {
 	
 	JogadoresDAO dao;
 	Jogadores temp;
+	Logar verifica;
 	
 	public JogadoresDAO getDao() {
 		if(dao == null)
@@ -23,6 +26,29 @@ public class JogadoresController {
 	}
 	public void setTemp(Jogadores temp) {
 		this.temp = temp;
+	}
+	
+	public Logar verificaDuplicado(Jogadores jogadores){
+		
+		Logar resultado = new Logar();
+		
+		List<Jogadores> list = getDao().getBeansByExample(jogadores);
+		
+		for(Jogadores jogador:list){
+			if(jogador.getLogin().equals(jogadores.getLogin())){
+				resultado.setLogin("Em uso, informe outro!");
+			}else{
+				resultado.setLogin("ok");
+			}
+			if(jogador.getEmail().equals(jogadores.getEmail())){
+				resultado.setSenha("Já cadastrado, informe outro!");
+			}else{
+				resultado.setSenha("ok");
+			}
+		}
+		
+		
+		return resultado;
 	}
 	
 	public Jogadores cloneToDTO(Jogadores bruto){

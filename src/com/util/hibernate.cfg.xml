@@ -4,7 +4,7 @@
 	<session-factory>
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="connection.driver_class">org.postgresql.Driver</property>
-		<property name="connection.url">jdbc:postgresql://localhost:5432/malvino</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5432/malvino_v2</property>
 		<property name="connection.username">postgres</property>
 		<property name="connection.password">root</property>
 		<property name="hibernate.default_schema">malvino</property>
@@ -30,6 +30,16 @@
 		<mapping class="com.model.Jogadores"></mapping>
 		<mapping class="com.model.Perfis"></mapping>
 		<mapping class="com.model.Clas"></mapping>
+		<mapping class="com.model.Jogos"></mapping>
+		<mapping class="com.model.Categorias"></mapping>
+		<mapping class="com.model.Publicidades"></mapping>
+		<mapping class="com.model.JogadoresJogos"></mapping>
+		<mapping class="com.model.JogosCategoria"></mapping>
+		<mapping class="com.model.JogosPublicidade"></mapping>
+		<mapping class="com.model.CategoriaPublicidade"></mapping>
+		
+		
+		
 
 	</session-factory>
 </hibernate-configuration>

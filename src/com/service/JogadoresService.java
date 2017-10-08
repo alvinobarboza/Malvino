@@ -19,9 +19,9 @@ import javax.ws.rs.core.Response;
 import com.bean.JogadoresBean;
 import com.dao.JogadoresDAO;
 import com.model.Jogadores;
-import com.model.Logar;
 import com.model.Perfis;
 import com.servicecontroller.JogadoresController;
+import com.servicecontroller.Logar;
 
 
 
@@ -107,13 +107,16 @@ public class JogadoresService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response salvar(Jogadores jogadores) {
 		
-		if(){
+		Logar teste = getController().verificaDuplicado(jogadores);
+		
+		if(teste.getLogin().equals("ok")&&teste.getSenha().equals("ok")){
 			
 			getJogadoresDAO().salvar(jogadores);
 			getJogadoresDAO().commit();
-			return Response.ok().entity(logar).build();
+			return Response.ok().entity("ok").build();
+			
 		}else{	
-			return Response.status(400).entity(logar).build();
+			return Response.status(400).entity(teste).build();
 		}
 	}
 	

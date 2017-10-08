@@ -52,7 +52,7 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 	
 	public boolean login(String login, String senha) throws SQLException {
 
-		final Query query = session.createQuery("select j from Jogadores j where j.login = :login and j.senha = :senha");
+		final Query query = session.createQuery("select j from Jogadores j where j.login  = :login and j.senha = :senha");
 
 		query.setString("login", login);
 		query.setString("senha", senha);
