@@ -1,4 +1,4 @@
-package com.model;
+package com.servicecontroller;
 
 public class Logar {
 	private String login;
