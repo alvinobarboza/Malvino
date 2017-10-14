@@ -37,7 +37,7 @@
 		<mapping class="com.model.JogosCategoria"></mapping>
 		<mapping class="com.model.JogosPublicidade"></mapping>
 		<mapping class="com.model.CategoriaPublicidade"></mapping>
-		
+		<mapping class="com.model.Amigos"></mapping>
 		
 		
 

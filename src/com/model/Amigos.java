@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "jogadores")
+@Table(name = "amigos")
 public class Amigos extends BaseModel{
 	
 	@Id
