@@ -47,7 +47,7 @@ public class LoginBean extends BaseBean {
 			}
 
 		} catch (Exception ex) {
-			showError("Erro ao tentar autenticar no sistema!" + ex.getMessage());
+			showError("Erro ao tentar autenticar!" + ex.getMessage());
 			return null;
 		}
 	}

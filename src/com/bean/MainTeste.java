@@ -1,20 +1,22 @@
 package com.bean;
 
-import java.sql.SQLException;
+import java.util.List;
 
-import com.dao.PerfisDAO;
-import com.model.Perfis;
+import com.dao.JogadoresDAO;
+import com.model.Jogadores;
 
 
 public class MainTeste {
-	public static void main(String [] args) throws SQLException{
+	public static void main(String [] args) {
 		
-		Perfis teste = new Perfis();
-		PerfisDAO dao = new PerfisDAO();
+		//Jogadores teste = new Jogadores();
+		JogadoresDAO dao = new JogadoresDAO();
 		
-		teste = dao.getBean(1);
+		List<Jogadores> teste = dao.getBeans();
 		
-		System.out.println(teste.getNome());
 		
+		for(Jogadores t : teste){
+		System.out.println(t.getNome());
+		}
 	}
 }

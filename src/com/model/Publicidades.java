@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "publicidade")
-@SequenceGenerator(name="publicidade_seq", sequenceName="publicidades_id_publicidade_seq", allocationSize = 1)
+@SequenceGenerator(name="publicidade_seq", sequenceName="seq_publicidades", allocationSize = 1)
 public class Publicidades {
 	
 	@Id

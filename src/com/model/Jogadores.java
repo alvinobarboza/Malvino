@@ -16,12 +16,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "jogadores")
-@SequenceGenerator(name="jogador_seq", sequenceName="jogadores_id_jogador_seq", allocationSize = 1)
+
 public class Jogadores extends BaseModel {
 	
 	@Id
 	@Column(name = "id_jogador")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="jogador_seq")
+	@SequenceGenerator(name="jogador", sequenceName="seq_jogadores", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="jogador")
 	private int idJogador;
 	
 	@Column(name = "ds_nome")
@@ -47,12 +48,14 @@ public class Jogadores extends BaseModel {
 	@JoinColumn(name = "fk_cla")
 	private Clas clas;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "jogadores")
-	private List<JogadoresJogos> jogadoresJogos;
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "jogadores")
+	//private List<JogadoresJogos> jogadoresJogos;
 
+	
 	public int getIdJogador() {
 		return idJogador;
 	}
+
 
 	public void setIdJogador(int idJogador) {
 		this.idJogador = idJogador;

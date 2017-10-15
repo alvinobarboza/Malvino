@@ -14,8 +14,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "categorias")
-@SequenceGenerator(name="categoria_seq", sequenceName="categorias_id_categoria_seq", allocationSize = 1)
-public class Categorias {
+@SequenceGenerator(name="categoria_seq", sequenceName="seq_categorias", allocationSize = 1)
+public class Categorias extends BaseModel {
 	
 	@Id
 	@Column(name = "id_categoria")

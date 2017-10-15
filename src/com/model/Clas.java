@@ -5,16 +5,21 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Table(name="clas")
 @Entity
+@SequenceGenerator(name="cla_seq", sequenceName="seq_clas", allocationSize = 1)
 public class Clas extends BaseModel {
 	
 	@Id
 	@Column(name="id_cla")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="cla_seq")
 	private int idCla;
 	
 	@Column(name="ds_nome")

@@ -14,8 +14,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "jogos")
-@SequenceGenerator(name="jogo_seq", sequenceName="jogos_id_jogo_seq", allocationSize = 1)
-public class Jogos {
+@SequenceGenerator(name="jogo_seq", sequenceName="seq_jogos", allocationSize = 1)
+public class Jogos extends BaseModel{
 	
 	@Id
 	@Column(name = "id_jogador")

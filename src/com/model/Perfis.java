@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Table(name = "perfis")
 @Entity
 public class Perfis extends BaseModel {
+	
 	@Id
 	@Column(name = "id_perfil")
 	private int idPerfil;
