@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -11,23 +12,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
+
 @Entity
 @Table(name = "jogadores_jogos")
-public class JogadoresJogos extends BaseModel {
+public class JogadoresJogos extends BaseModel implements Serializable{
 	
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pfk_jogador")
-	private Jogadores jogador;
+	private Jogadores jogadores;
 	
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pfk_jogo")
-	private Jogos jogo;
+	private Jogos jogos;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_cla")
-	private Clas cla;
+	private Clas clas;
 	
 	@Column(name="nu_qtd_pontos_recorde")
 	private int pontosRecorde;
@@ -46,33 +56,33 @@ public class JogadoresJogos extends BaseModel {
 	
 
 	public Jogadores getJogador() {
-		if(jogador == null)
-			jogador = new Jogadores();
-		return jogador;
+		if(jogadores == null)
+			jogadores = new Jogadores();
+		return jogadores;
 	}
 
 	public void setJogador(Jogadores jogador) {
-		this.jogador = jogador;
+		this.jogadores = jogador;
 	}
 
 	public Jogos getJogo() {
-		if(jogo == null)
-			jogo = new Jogos();
-		return jogo;
+		if(jogos == null)
+			jogos = new Jogos();
+		return jogos;
 	}
 
 	public void setJogo(Jogos jogo) {
-		this.jogo = jogo;
+		this.jogos = jogo;
 	}
 
 	public Clas getCla() {
-		if(cla == null)
-			cla = new Clas();
-		return cla;
+		if(clas == null)
+			clas = new Clas();
+		return clas;
 	}
 
 	public void setCla(Clas cla) {
-		this.cla = cla;
+		this.clas = cla;
 	}
 
 	public int getPontosRecorde() {

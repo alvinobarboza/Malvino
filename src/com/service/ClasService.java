@@ -1,6 +1,5 @@
 package com.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -11,14 +10,12 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.bean.ClasBean;
 import com.dao.ClasDAO;
 import com.model.Clas;
-import com.model.Perfis;
 
 
 
@@ -35,10 +32,6 @@ public class ClasService {
 		return ClasDAO;
 	}
 
-	private void setClasDAO(ClasDAO ClasDAO) {
-		this.ClasDAO = ClasDAO;
-	}
-	
 	public ClasBean getBean() {
 		if (bean == null)
 			bean = new ClasBean();
@@ -72,9 +65,9 @@ public class ClasService {
 	}
 	
 	@GET 
-	@Path("/Clas/{idJogador}") 
+	@Path("/Clas/{idCla}") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public Clas getJogador(@PathParam("idJogador") int codigo) {
+	public Clas getJogador(@PathParam("idCla") int codigo) {
 
 		Clas cla = getClasDAO().getBean(codigo);
 

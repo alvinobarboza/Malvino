@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -10,41 +11,47 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "jogadores_jogos")
-public class CategoriaPublicidade extends BaseModel {
+public class CategoriaPublicidade extends BaseModel implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5L;
+
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pfk_publicidade")
-	private Publicidades publicidade;
+	private Publicidades publicidades;
 	
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pfk_categoria")
-	private Categorias categoria;
+	private Categorias categorias;
 	
 	@Column(name="dt_data_cadastro")
 	private Date dataRegistro;
 
 	public Publicidades getPublicidade() {
-		if(publicidade == null)
-			publicidade = new Publicidades();
-		return publicidade;
+		if(publicidades == null)
+			publicidades = new Publicidades();
+		return publicidades;
 	}
 
 	public void setPublicidade(Publicidades publicidade) {
-		this.publicidade = publicidade;
+		this.publicidades = publicidade;
 	}
 
 	public Categorias getCategoria() {
-		if(categoria == null)
-			categoria = new Categorias();
-		return categoria;
+		if(categorias == null)
+			categorias = new Categorias();
+		return categorias;
 	}
 
 	public void setCategoria(Categorias categoria) {
-		this.categoria = categoria;
+		this.categorias = categoria;
 	}
 
 	public Date getDataRegistro() {

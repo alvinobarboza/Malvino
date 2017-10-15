@@ -28,7 +28,7 @@ public class Categorias extends BaseModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
 	private List<JogosCategoria> jogosCategorias;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicidade")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
 	private List<CategoriaPublicidade> categoriPublicidade;
 	
 	public int getIdCategoria() {

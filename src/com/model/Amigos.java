@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -10,10 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "amigos")
-public class Amigos extends BaseModel{
-	
+public class Amigos extends BaseModel implements Serializable{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
+
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pfk_jogador_solicitante")

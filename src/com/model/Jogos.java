@@ -18,8 +18,8 @@ import javax.persistence.Table;
 public class Jogos extends BaseModel{
 	
 	@Id
-	@Column(name = "id_jogador")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="jogador_seq")
+	@Column(name = "id_jogo")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="jogo_seq")
 	int idJogo;
 	
 	@Column(name = "ds_nome")

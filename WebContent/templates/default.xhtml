@@ -1476,67 +1476,74 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 </style>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Gerenciamento de Frotas</title>
+	<title>Malvino - Game Suite</title>
 	<script src="meu_script.js"></script>
+	
 </h:head>
+
 <h:body>
 	<p:growl id="msgGlobal" autoUpdate="true" life="2000" />
+	
 	<p:layout fullPage="true">
-		<p:layoutUnit position="north"
-			header="Malvino - Game Suite">
+	
+		<p:layoutUnit position="north" header="Malvino - Game Suite">
 			<div align="right">
 				Tamanho da Fonte: <a href="javascript:mudaTamanho('texto', -1);">Diminuir
 					(-)</a> <a href="javascript:mudaTamanho('texto', 1);">Aumentar (+)</a>
 			</div>
 		</p:layoutUnit>
+		
 		<p:layoutUnit position="south"
 			header=" @ Todos os Direitos Reservados (MeA)">
 		</p:layoutUnit>
+		
 		<p:layoutUnit position="center">
 			<ui:insert name="conteudo" />
 		</p:layoutUnit>
-		<p:layoutUnit position="west" size="200" header="Menus"
-			rendered="#{loginBean.jogadores.nome == null}">
+		
+		<p:layoutUnit position="west" size="200" header="Menus"	>
+		
 			<h:form background="white" margin="30px auto" border-radius=" 0.8px"
 				overflow="hidden" position=" relative"
 				box-shadow=" 0 5px 10px 5px rgba(0, 0, 0, 0.2)">
+				
 				<p:panelMenu id="painelMenu">
 
 					<p:submenu label="Logar">
-						<p:menuitem value="Fazer Login" outcome="/pages/login.xhtml">
-						</p:menuitem>
+						<p:menuitem value="Fazer Login" outcome="/pages/login.xhtml"></p:menuitem>
 					</p:submenu>
+					
 					<p:submenu label="Principal">
-						<p:menuitem icon="ui-icon-extlink" value="Home"
-							outcome="/pages/index.xhtml">
-						</p:menuitem>
-						<p:menuitem value="Help" outcome="/pages/help.xhtml">
-						</p:menuitem>
+						<p:menuitem icon="ui-icon-extlink" value="Home" outcome="/pages/index.xhtml"></p:menuitem>
+						<p:menuitem value="Help" outcome="/pages/help.xhtml"></p:menuitem>
 					</p:submenu>
+					
 				</p:panelMenu>
+				
 			</h:form>
+			
 		</p:layoutUnit>
-		<p:layoutUnit position="west" size="200" header="Menus"
-			rendered="#{loginBean.jogadores.nome != null}">
+		
+		<p:layoutUnit position="west" size="200" header="Menus">
+		
 			<h:form background="white" margin="30px auto" border-radius=" 0.8px"
 				overflow="hidden" position=" relative"
 				box-shadow=" 0 5px 10px 5px rgba(0, 0, 0, 0.2)">
+				
 				<p:panelMenu id="painelMenu">
+				
 					<p:submenu label="Principal">
-						<p:menuitem icon="ui-icon-extlink" value="Home"
-							outcome="/pages/jogadores/list.xhtml">
-						</p:menuitem>
-						<p:menuitem value="Sair" action="#{loginBean.logout}">
-						</p:menuitem>
-						<p:menuitem value="Help" outcome="/pages/help.xhtml">
-						</p:menuitem>
+						<p:menuitem icon="ui-icon-extlink" value="Home"	outcome="/pages/jogadores/list.xhtml"></p:menuitem>
+						<p:menuitem value="Sair" action="#{loginBean.logout}"></p:menuitem>
+						<p:menuitem value="Help" outcome="/pages/help.xhtml"></p:menuitem>
 					</p:submenu>
+					
 					<p:submenu label="Cadastros">
-						<p:menuitem value="Jogadores" outcome="/pages/jogadores/list.xhtml"
-							rendered="#{loginBean.jogadores.perfis.idPerfil == 1}">
-						</p:menuitem>
+						<p:menuitem value="Jogadores" outcome="/pages/jogadores/list.xhtml"></p:menuitem>
 					</p:submenu>
+					
 				</p:panelMenu>
+				
 			</h:form>
 		</p:layoutUnit>
 	</p:layout>

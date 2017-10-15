@@ -28,10 +28,10 @@ public class Publicidades {
 	@Column(name = "ds_descricao")
 	String descricao;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicidade")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicidades")
 	private List<JogosPublicidade> jogosPublicidade;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicidade")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicidades")
 	private List<CategoriaPublicidade> categoriPublicidade;
 	
 	public int getIdPublicidade() {
