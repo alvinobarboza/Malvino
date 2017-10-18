@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/default.xhtml">
+	<ui:define name="metadata">
+
+		<center>
+			<f:metadata>
+				<f:viewParam name="acao" value="#{categoriasBean.acao}" />
+				<f:viewParam name="codigo" value="#{categoriasBean.codigo}" />
+			</f:metadata>
+			<script src="meu_script.js"></script>
+			<f:event listener="#{categoriasBean.find}" type="preRenderView" />
+		</center>
+	</ui:define>
+	<ui:define name="conteudo">
+		<center>
+			<div style="font-size: 16px;" id="texto">
+				<p:fieldset legend="Categorias" toggleable="true">
+					<h:form id="frm">
+
+						<h:panelGrid columns="2" id="gridcategorias">
+							<p:outputLabel value="Código:" />
+							<p:inputText maxlength="10" size="10" readonly="true"
+								value="#{categoriasBean.categorias.idCategoria}" />
+
+							<p:outputLabel value="Nome:" />
+							<p:inputText maxlength="50" size="30"
+								readonly="#{categoriasBean.acao == 'delete' || categoriasBean.acao == 'details'}"
+								value="#{categoriasBean.categorias.nome}" required="true" />
+							
+						</h:panelGrid>
+						
+						<h:panelGrid columns="3">
+						
+							<p:button value="Voltar" outcome="/pages/categorias/list.xhtml" />
+							
+							<p:commandButton icon="ui-icon-disk" value="Salvar"
+								actionListener="#{categoriasBean.save}" update=":msgGlobal"
+								rendered="#{categoriasBean.acao == 'new'}"
+								disabled="#{categoriasBean.acao == 'details'}" />
+								
+							<p:commandButton icon="ui-icon-arrowrefresh-1-w"
+								value="Atualizar" actionListener="#{categoriasBean.edit}"
+								update=":msgGlobal" rendered="#{categoriasBean.acao == 'edit'}"
+								disable="#{categoriasBean.acao == 'details'}"
+								action="/pages/categorias/list.xhtml?faces-redirect=true " />
+								
+							<p:commandButton icon="ui-icon-close" value="Excluir"
+								actionListener="#{categoriasBean.delete}" update=":msgGlobal"
+								rendered="#{categoriasBean.acao == 'delete'}"
+								disable="#{categoriasBean.acao == 'details'}"
+								action="/pages/categorias/list.xhtml?faces-redirect=true " />
+								
+						</h:panelGrid>
+						
+					</h:form>
+				</p:fieldset>
+			</div>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>
