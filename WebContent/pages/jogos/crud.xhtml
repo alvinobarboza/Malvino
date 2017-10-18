@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/default.xhtml">
+	<ui:define name="metadata">
+
+		<center>
+			<f:metadata>
+				<f:viewParam name="acao" value="#{jogosBean.acao}" />
+				<f:viewParam name="codigo" value="#{jogosBean.codigo}" />
+			</f:metadata>
+			<script src="meu_script.js"></script>
+			<f:event listener="#{jogosBean.find}" type="preRenderView" />
+		</center>
+	</ui:define>
+	<ui:define name="conteudo">
+		<center>
+			<div style="font-size: 16px;" id="texto">
+				<p:fieldset legend="Usuários" toggleable="true">
+					<h:form id="frm">
+
+						<h:panelGrid columns="2" id="gridJogos">
+							<p:outputLabel value="Código:" />
+							<p:inputText maxlength="10" size="10" readonly="true"
+								value="#{jogosBean.jogos.idJogo}" />
+
+							<p:outputLabel value="Nome:" />
+							<p:inputText maxlength="50" size="30"
+								readonly="#{jogosBean.acao == 'delete' || jogosBean.acao == 'details'}"
+								value="#{jogosBean.jogos.nome}" required="true" />
+							
+							<p:outputLabel value="Detalhes:" />
+							<p:inputText maxlength="50" size="30"
+								readonly="#{jogosBean.acao == 'delete' || jogosBean.acao == 'details'}"
+								value="#{jogosBean.jogos.descricao}" required="true" />
+							
+							
+							<p:outputLabel value="Ativo/Inativo" />
+							<p:inputText maxlength="50" size="30"
+								readonly="#{jogosBean.acao == 'delete' || jogosBean.acao == 'details'}"
+								value="#{jogosBean.jogadores.login}" required="true" />
+														
+							
+								
+						</h:panelGrid>
+						
+						<h:panelGrid columns="3">
+						
+							<p:button value="Voltar" outcome="/pages/jogos/list.xhtml" />
+							
+							<p:commandButton icon="ui-icon-disk" value="Salvar"
+								actionListener="#{jogosBean.save}" update=":msgGlobal"
+								rendered="#{jogosBean.acao == 'new'}"
+								disabled="#{jogosBean.acao == 'details'}" />
+								
+							<p:commandButton icon="ui-icon-arrowrefresh-1-w"
+								value="Atualizar" actionListener="#{jogosBean.edit}"
+								update=":msgGlobal" rendered="#{jogosBean.acao == 'edit'}"
+								disable="#{jogosBean.acao == 'details'}"
+								action="/pages/jogos/list.xhtml?faces-redirect=true " />
+								
+							<p:commandButton icon="ui-icon-close" value="Excluir"
+								actionListener="#{jogosBean.delete}" update=":msgGlobal"
+								rendered="#{jogosBean.acao == 'delete'}"
+								disable="#{jogosBean.acao == 'details'}"
+								action="/pages/jogos/list.xhtml?faces-redirect=true " />
+								
+						</h:panelGrid>
+						
+					</h:form>
+				</p:fieldset>
+			</div>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>

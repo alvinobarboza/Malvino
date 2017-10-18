@@ -18,7 +18,6 @@ import javax.persistence.Table;
 public class JogadoresJogos extends BaseModel implements Serializable{
 	
 
-
 	/**
 	 * 
 	 */

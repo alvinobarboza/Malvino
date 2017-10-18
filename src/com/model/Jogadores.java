@@ -39,6 +39,9 @@ public class Jogadores extends BaseModel {
 	@Column(name = "ds_genero")
 	private String genero;
 	
+	@Column(name = "nu_ativo")
+	boolean Ativo;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_perfil")
 	private Perfis perfis;
@@ -56,6 +59,14 @@ public class Jogadores extends BaseModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "jogadorSolicitado")
 	private List<Amigos> solicitado;
 
+	public boolean isAtivo() {
+		return Ativo;
+	}
+	
+	
+	public void setAtivo(boolean ativo) {
+		Ativo = ativo;
+	}
 	
 	public int getIdJogador() {
 		return idJogador;

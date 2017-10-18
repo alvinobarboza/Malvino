@@ -1501,7 +1501,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 			<ui:insert name="conteudo" />
 		</p:layoutUnit>
 		
-		<p:layoutUnit position="west" size="200" header="Menus"	>
+		<p:layoutUnit position="west" size="200" header="Menus"	
+		rendered="#{loginBean.jogadores.idJogador == 0}">
 		
 			<h:form background="white" margin="30px auto" border-radius=" 0.8px"
 				overflow="hidden" position=" relative"
@@ -1524,7 +1525,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 			
 		</p:layoutUnit>
 		
-		<p:layoutUnit position="west" size="200" header="Menus">
+		<p:layoutUnit position="west" size="200" header="Menus"
+		rendered="#{loginBean.jogadores.perfis.idPerfil == 1 || loginBean.jogadores.perfis.idPerfil == 2}">
 		
 			<h:form background="white" margin="30px auto" border-radius=" 0.8px"
 				overflow="hidden" position=" relative"
@@ -1538,8 +1540,12 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 						<p:menuitem value="Help" outcome="/pages/help.xhtml"></p:menuitem>
 					</p:submenu>
 					
-					<p:submenu label="Cadastros">
-						<p:menuitem value="Jogadores" outcome="/pages/jogadores/list.xhtml"></p:menuitem>
+					<p:submenu label="Cadastros">]
+						<p:menuitem value="Usuários" outcome="/pages/usuários/list.xhtml"></p:menuitem>
+						<p:menuitem value="Jogos" outcome="/pages/jogos/list.xhtml"></p:menuitem>
+						<p:menuitem value="Publicidades" outcome="/pages/publicidades/list.xhtml"></p:menuitem>
+						<p:menuitem value="Categorizar jogos" outcome="/pages/categorizar/list.xhtml"></p:menuitem>
+						<p:menuitem value="Gerar relatórios" outcome="/pages/relatorios/list.xhtml"></p:menuitem>
 					</p:submenu>
 					
 				</p:panelMenu>

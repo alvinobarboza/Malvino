@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/templates/default.xhtml">
 	<f:metadata name="metadata">
-		<f:event listener="#{jogadoresBean.list}" type="preRenderView" />
+		<f:event listener="#{publicidadesBean.list}" type="preRenderView" />
 	</f:metadata>
 	<script src="meu_script.js"></script>
 	<ui:define name="conteudo">
@@ -19,10 +19,10 @@
 					<h:form>
 						<p:outputLabel value="Pesquisar por Nome: " />
 						<p:inputText maxlength="50" size="30"
-							value="#{jogadoresBean.jogadores.nome}" />
+							value="#{publicidadesBean.publicidades.nome}" />
 						<h:commandButton value="Pesquisar"
 							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-							actionListener="#{jogadoresBean.list()}" update=":frm:gridjogadores">
+							actionListener="#{publicidadesBean.list()}" update=":frm:gridjogadores">
 						</h:commandButton>
 					</h:form>
 				</div>
@@ -30,32 +30,22 @@
 				<h:form id="frm">
 					<p:dataTable emptyMessage="Nenhum registro
 				 encontrado"
-						id="gridjogadores" value="#{jogadoresBean.listJogadores}" var="jogadores"
+						id="gridjogadores" value="#{publicidadesBean.listPublicidades}" var="publicidades"
 						paginator="true" rows="4">
 
 						<f:facet name="header">
-							<p:button value="Cadastrar" outcome="/pages/jogadores/crud.xhtml">
+							<p:button value="Cadastrar" outcome="/pages/publicidades/crud.xhtml">
 								<f:param name="acao" value="new" />
 
 							</p:button>
 						</f:facet>
 						<p:column headerText="Código">
 							<center>
-								<p:outputLabel value="#{jogadores.idJogador}" />
+								<p:outputLabel value="#{publicidades.idPublicidade}" />
 							</center>
 						</p:column>
 						<p:column headerText="Nome">
-							<p:outputLabel value="#{jogadores.nome}">
-							</p:outputLabel>
-						</p:column>
-						
-						<p:column headerText="E-mail">
-							<p:outputLabel value="#{jogadores.email}">
-							</p:outputLabel>
-						</p:column>
-						
-						<p:column headerText="Perfil de Acesso">
-							<p:outputLabel value="#{jogadores.perfis.nome}">
+							<p:outputLabel value="#{publicidades.nome}">
 							</p:outputLabel>
 						</p:column>
 					
@@ -63,25 +53,25 @@
 							<p:column>
 								<p:column>
 									<p:button icon="ui-icon-arrowrefresh-1-w" value="Editar"
-										title="Editar" outcome="/pages/jogadores/crud.xhtml">
+										title="Editar" outcome="/pages/publicidades/crud.xhtml">
 										<f:param name="acao" value="edit" />
-										<f:param name="codigo" value="#{jogadores.idJogador}" />
+										<f:param name="codigo" value="#{publicidades.idPublicidade}" />
 									</p:button>
 								</p:column>
 							</p:column>
 							<p:column headerText="Opções">
 								<p:button icon="ui-icon-close" value="Excluir" title="Excluir"
-									outcome="/pages/jogadores/crud.xhtml">
+									outcome="/pages/publicidades/crud.xhtml">
 									<f:param name="acao" value="delete" />
-									<f:param name="codigo" value="#{jogadores.idJogador}" />
+									<f:param name="codigo" value="#{publicidades.idPublicidade}" />
 								</p:button>
 							</p:column>
 
 							<p:column>
 								<p:button value="Detalhes" title="Detalhes"
-									outcome="/pages/jogadores/crud.xhtml">
+									outcome="/pages/publicidades/crud.xhtml">
 									<f:param name="acao" value="details" />
-									<f:param name="codigo" value="#{jogadores.idJogador}" />
+									<f:param name="codigo" value="#{publicidades.idPublicidade}" />
 								</p:button>
 							</p:column>
 						</div>

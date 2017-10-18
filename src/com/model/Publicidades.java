@@ -13,7 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "publicidade")
+@Table(name = "publicidades")
 @SequenceGenerator(name="publicidade_seq", sequenceName="seq_publicidades", allocationSize = 1)
 public class Publicidades {
 	

@@ -30,32 +30,22 @@
 				<h:form id="frm">
 					<p:dataTable emptyMessage="Nenhum registro
 				 encontrado"
-						id="gridjogadores" value="#{jogadoresBean.listJogadores}" var="jogadores"
+						id="gridjogadores" value="#{clasBean.listClas}" var="jogadores"
 						paginator="true" rows="4">
 
 						<f:facet name="header">
-							<p:button value="Cadastrar" outcome="/pages/jogadores/crud.xhtml">
+							<p:button value="Cadastrar" outcome="/pages/clas/crud.xhtml">
 								<f:param name="acao" value="new" />
 
 							</p:button>
 						</f:facet>
 						<p:column headerText="Código">
 							<center>
-								<p:outputLabel value="#{jogadores.idJogador}" />
+								<p:outputLabel value="#{clas.idCla}" />
 							</center>
 						</p:column>
 						<p:column headerText="Nome">
-							<p:outputLabel value="#{jogadores.nome}">
-							</p:outputLabel>
-						</p:column>
-						
-						<p:column headerText="E-mail">
-							<p:outputLabel value="#{jogadores.email}">
-							</p:outputLabel>
-						</p:column>
-						
-						<p:column headerText="Perfil de Acesso">
-							<p:outputLabel value="#{jogadores.perfis.nome}">
+							<p:outputLabel value="#{clas.nome}">
 							</p:outputLabel>
 						</p:column>
 					

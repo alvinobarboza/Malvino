@@ -2,21 +2,23 @@ package com.bean;
 
 import java.util.List;
 
-import com.dao.JogadoresDAO;
-import com.model.Jogadores;
+import com.dao.JogadoresJogosDAO;
+
+import com.model.JogadoresJogos;
 
 
 public class MainTeste {
 	public static void main(String [] args) {
 		
 		//JogadoresJogos teste = new JogadoresJogos();
-		JogadoresDAO dao = new JogadoresDAO();
+		JogadoresJogosDAO dao = new JogadoresJogosDAO();
 		
-		List<Jogadores> teste = dao.getBeans();
+		List<JogadoresJogos> teste = dao.getBeans();
 		
 		
-		for(Jogadores t : teste){
-		System.out.println(t.getNome()+" "+t.getPerfis().getNome());
+		for(JogadoresJogos t : teste){
+		System.out.println("O jogador "+t.getJogador().getNome()+" jogou "+t.getJogo().getNome()+
+				"\n e fez um recorde de "+t.getPontosRecorde()+" pontos");
 		}
 	}
 }

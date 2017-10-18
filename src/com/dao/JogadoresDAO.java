@@ -22,6 +22,7 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 
 	public Jogadores existOne(String login, String senha) throws SQLException {
 		
+		PerfisDAO dao = new PerfisDAO();
 		Jogadores retorno = new Jogadores();
 		retorno.setLogin("Login errado");
 		
@@ -38,12 +39,12 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		while(rs.next()){
 		
 			retorno.setIdJogador(rs.getInt("id_jogador"));
-			retorno.getPerfis().setIdPerfil(rs.getInt("id_perfil"));
+			retorno.setPerfis(dao.getBean(rs.getInt("fk_perfil")));
 			retorno.setNome(rs.getString("ds_nome"));
 			retorno.setLogin(rs.getString("ds_login"));
 			retorno.setSenha(rs.getString("ds_senha"));
 			retorno.setGenero(rs.getString("ds_genero"));
-			retorno.getClas().setIdCla(rs.getInt("id_cla"));
+			retorno.getClas().setIdCla(rs.getInt("fk_cla"));
 			
 		}
 		
