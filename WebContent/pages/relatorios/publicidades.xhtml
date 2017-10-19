@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/default.xhtml">
+	<ui:define name="metadata">
+
+		<center>
+			<f:metadata>
+				<f:viewParam name="acao" value="#{ClasBean.acao}" />
+				<f:viewParam name="codigo" value="#{ClasBean.codigo}" />
+			</f:metadata>
+			<script src="meu_script.js"></script>
+			<f:event listener="#{ClasBean.find}" type="preRenderView" />
+		</center>
+	</ui:define>
+	<ui:define name="conteudo">
+		<center>
+			<div style="font-size: 16px;" id="texto">
+				<p:fieldset legend="Usuários" toggleable="true">
+					<h:form id="frm">
+
+						<h:panelGrid columns="2" id="gridClas">
+							<p:outputLabel value="Código:" />
+							<p:inputText maxlength="10" size="10" readonly="true"
+								value="#{ClasBean.Clas.idCla}" />
+
+							<p:outputLabel value="Nome:" />
+							<p:inputText maxlength="50" size="30"
+								readonly="#{ClasBean.acao == 'delete' || ClasBean.acao == 'details'}"
+								value="#{ClasBean.Clas.nome}" required="true" />
+							
+							<p:outputLabel value="Descrição:" />
+							<p:inputText maxlength="50" size="30"
+								readonly="#{ClasBean.acao == 'delete' || ClasBean.acao == 'details'}"
+								value="#{ClasBean.Clas.descricao}" required="true" />
+							
+							<p:outputLabel value="Quantidade máxima de menbros no clã"/>
+							
+							
+															
+						</h:panelGrid>
+						
+						<h:panelGrid columns="3">
+						
+							<p:button value="Voltar" outcome="/pages/clas/list.xhtml" />
+							
+							<p:commandButton icon="ui-icon-disk" value="Salvar"
+								actionListener="#{ClasBean.save}" update=":msgGlobal"
+								rendered="#{ClasBean.acao == 'new'}"
+								disabled="#{ClasBean.acao == 'details'}" />
+								
+							<p:commandButton icon="ui-icon-arrowrefresh-1-w"
+								value="Atualizar" actionListener="#{ClasBean.edit}"
+								update=":msgGlobal" rendered="#{ClasBean.acao == 'edit'}"
+								disable="#{ClasBean.acao == 'details'}"
+								action="/pages/Clas/list.xhtml?faces-redirect=true " />
+								
+							<p:commandButton icon="ui-icon-close" value="Excluir"
+								actionListener="#{ClasBean.delete}" update=":msgGlobal"
+								rendered="#{ClasBean.acao == 'delete'}"
+								disable="#{ClasBean.acao == 'details'}"
+								action="/pages/Clas/list.xhtml?faces-redirect=true " />
+								
+						</h:panelGrid>
+						
+					</h:form>
+				</p:fieldset>
+			</div>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>

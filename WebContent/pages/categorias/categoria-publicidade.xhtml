@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/default.xhtml">
+	<!--  <f:metadata name="metadata">
+		<f:event listener="#{categoriasBean.list}" type="preRenderView" />
+	</f:metadata>-->
+	<script src="meu_script.js"></script>
+	<ui:define name="conteudo">
+		<center>
+			<div style="font-size: 16px;" id="texto">
+				<h:outputText value="Publicidades categorizadas" />
+				<hr></hr>
+				<div class="form-group">
+					<h:form>
+				
+					<p:outputLabel value="Selecione a publicidae a ser categorizada" />
+							<p:selectOneMenu value="2">
+								
+								<f:selectItem itemValue="0"
+									itemLabel="Selecione a publicidade" />
+									
+								<f:selectItem itemValue="1"
+									itemLabel="Publicidade 1" />
+									
+								<f:selectItem itemValue="2"
+									itemLabel="Publicidade 2" />	
+																
+							</p:selectOneMenu>
+					<br></br>
+					<br></br>		
+					<p:outputLabel value="Selecione a categoria para a publicidade" />
+							<p:selectOneMenu value="1">
+								
+								<f:selectItem itemValue="0"
+									itemLabel="Selecione a categoria" />
+									
+								<f:selectItem itemValue="1"
+									itemLabel="Categoria 1" />
+									
+								<f:selectItem itemValue="2"
+									itemLabel="Categoria 2" />	
+																
+							</p:selectOneMenu>
+					<br></br>
+					<br></br>
+							<p:button value="Categorizar">
+								<f:param name="acao" value="new" />
+							</p:button>
+					</h:form>
+				</div>
+				<hr></hr>
+				<h:form id="frm">
+					<p:dataTable emptyMessage="Nenhum registro
+				 encontrado"
+						id="gridcategorias" value="" var="categorias"
+						paginator="true" rows="4">
+						<p:column headerText="Publicidade">
+							<center>
+								<p:outputLabel value="Publicidade 3" />
+							</center>
+						</p:column>
+						<p:column headerText="Categoria">
+							<p:outputLabel value="Categoria 3">
+							</p:outputLabel>
+						</p:column>
+					
+						<div class="principal principal-home">
+							<p:column>
+								<p:column>
+									<p:button icon="ui-icon-arrowrefresh-1-w" value="Editar"
+										title="Editar" >										
+									</p:button>
+								</p:column>
+							</p:column>
+							<p:column headerText="Opções">
+								<p:button icon="ui-icon-close" value="Excluir" title="Excluir">
+								</p:button>
+							</p:column>
+						</div>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>
+
+
+
+
+
+

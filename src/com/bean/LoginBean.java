@@ -9,18 +9,37 @@ import com.model.Jogadores;
 @ManagedBean
 @SessionScoped
 public class LoginBean extends BaseBean {
-	private static Jogadores jogadores;
+	private static int verifica = 1;
 	private JogadoresDAO jogadoresDAO;
+	
+	private String login;
+	private String senha;
+	
+	
 
-	public Jogadores getJogadores() {
-		if (jogadores == null)
-			jogadores = new Jogadores();
-		return jogadores;
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String usuario) {
+		this.login = usuario;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public int getVerifica() {
+		return verifica;
 	}
 
 	@SuppressWarnings("static-access")
-	public void setJogadores(Jogadores jogadores) {
-		this.jogadores = jogadores;
+	public void setJogadores(int verifica) {
+		this.verifica = verifica;
 	}
 
 	public JogadoresDAO getJogadoresDAO() {
@@ -35,13 +54,13 @@ public class LoginBean extends BaseBean {
 
 	public String autenticar() {
 		try {
-			Jogadores idJogador = getJogadoresDAO().existOne(getJogadores().getLogin(), getJogadores().getSenha());
+			Jogadores idJogador = getJogadoresDAO().existOne(getLogin(), getSenha());
 			System.out.println(idJogador.getPerfis().getNome());
 			if (idJogador.getIdJogador() == 0) {
 				showInfo("Jogadores e/ou senha inválidos");
 				return null;
 			} else {
-				setJogadores(getJogadoresDAO().getBean(idJogador.getIdJogador()));
+				setJogadores(2);
 				showInfo("Usuário autenticado com sucesso!");
 				return "/pages/index.xhtml?faces-redirect=true";
 			}
@@ -53,7 +72,7 @@ public class LoginBean extends BaseBean {
 	}
 
 	public String logout() {
-		jogadores = null;
+		setJogadores(1);
 		showInfo("Usuário Desconectado com sucesso!");
 		return "/pages/login.xhtml?faces-redirect=true";
 	}

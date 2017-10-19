@@ -1,11 +1,11 @@
 
 package com.dao;
 
-import com.model.JogadoresJogos;
+import com.model.CategoriaPublicidade;
 
-public class CategoriaPublicidadeDAO extends HibernateDAO<JogadoresJogos>{
+public class CategoriaPublicidadeDAO extends HibernateDAO<CategoriaPublicidade>{
 	public CategoriaPublicidadeDAO()
 	{
-		super(JogadoresJogos.class);
+		super(CategoriaPublicidade.class);
 	}
 }

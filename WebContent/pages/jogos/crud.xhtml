@@ -41,9 +41,9 @@
 							
 							
 							<p:outputLabel value="Ativo/Inativo" />
-							<p:inputText maxlength="50" size="30"
+							<p:selectBooleanCheckbox
 								readonly="#{jogosBean.acao == 'delete' || jogosBean.acao == 'details'}"
-								value="#{jogosBean.jogadores.login}" required="true" />
+								value="#{jogosBean.jogos.ativo}" required="true" />
 														
 							
 								
