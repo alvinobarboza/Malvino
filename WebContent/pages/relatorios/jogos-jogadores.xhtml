@@ -13,22 +13,30 @@
 	<ui:define name="conteudo">
 		<center>
 			<div style="font-size: 16px;" id="texto">
-				<h:outputText value="Usuários Cadastrados" />
+			<h:panelGrid columns="2" id="gridClas">
+				<h:outputText value="Jogos" />
 				<hr></hr>
-				<p:outputLabel value="Ordenar relatório por:" />
-							<p:selectOneMenu value="2">
-																
-								<f:selectItem itemValue="1"
-									itemLabel="Visualizações crescente" />
-									
-								<f:selectItem itemValue="2"
-									itemLabel="Visualizações decrescente" />	
-																
-							</p:selectOneMenu>
-							<br></br>
-							<p:button value="Gerar relatório">
-								<f:param name="acao" value="new" />
-							</p:button>
+				<br></br>
+				<br></br>
+				<p:outputLabel value="Ordenar jogos : " />
+				<p:selectOneMenu value="1">
+													
+					<f:selectItem itemValue="1"
+						itemLabel="Mais jogados" />
+						
+					<f:selectItem itemValue="2"
+						itemLabel="Menos jogados" />	
+													
+				</p:selectOneMenu>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+			
+				<p:button value="Gerar relatório">
+					<f:param name="acao" value="new" />
+				</p:button>
+			</h:panelGrid>
 			</div>
 		</center>
 	</ui:define>

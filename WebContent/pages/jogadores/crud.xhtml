@@ -27,12 +27,12 @@
 						<h:panelGrid columns="2" id="gridClas">
 							<p:outputLabel value="Código:" />
 							<p:inputText maxlength="10" size="10" readonly="true"
-								value="#{jogadoresBean.jogadores.idJogadores}" />
+								value="#{jogadoresBean.jogadores.idJogador}" />
 
 							<p:outputLabel value="Nome:" />
 							<p:inputText maxlength="50" size="30"
 								readonly="#{jogadoresBean.acao == 'delete' || jogadoresBean.acao == 'details'}"
-								value="#{jogadoresBean.Jogadores.nome}" required="true" />
+								value="#{jogadoresBean.jogadores.nome}" required="true" />
 							
 							<p:outputLabel value="E-mail" />
 							<p:inputText maxlength="50" size="30"
@@ -51,7 +51,7 @@
 								
 							<p:outputLabel value="Genero" />
 							<p:selectOneMenu value="#{jogadoresBean.jogadores.genero}" 
-							disable="#{usuarioBean.acao == 'delete' || usuarioBean.acao == 'details'}">
+							disable="#{jogadoresBean.acao == 'delete' || jogadoresBean.acao == 'details'}">
 								
 								<f:selectItem itemValue="0"
 									itemLabel="Selecione o seu genero" />
@@ -66,25 +66,25 @@
 							
 							<p:outputLabel value="Perfil" />
 							<p:selectOneMenu value="#{jogadoresBean.jogadores.perfis.idPerfil}" 
-							disable="#{usuarioBean.acao == 'delete' || usuarioBean.acao == 'details'}">
+							disable="#{jogadoresBean.acao == 'delete' || jogadoresBean.acao == 'details'}">
 								<f:selectItem itemValue="0"
 									itemLabel="Selecione o tipo de Perfil" />
-								<f:selectItems value="#{jogadoresBean.listPerfil}" var="perfis"
+								<f:selectItems value="#{jogadoresBean.listPerfis}" var="perfis"
 									itemValue="#{perfis.idPerfil}" itemLabel="#{perfis.nome}" />
 								<f:validateBean />
 							</p:selectOneMenu>
 							
 							<p:outputLabel value="Ativo" />
 							<p:selectBooleanCheckbox
-							disabled="#{usuarioBean.acao == 'delete' || usuarioBean.acao == 'details'}"
-							value="#{jogadoresBean.usuario.Ativo}" required="true" />
+							disabled="#{jogadoresBean.acao == 'delete' || jogadoresBean.acao == 'details'}"
+							value="#{jogadoresBean.jogadores.ativo}" required="true" />
 							
 															
 						</h:panelGrid>
 						
 						<h:panelGrid columns="3">
 						
-							<p:button value="Voltar" outcome="/pages/clas/list.xhtml" />
+							<p:button value="Voltar" outcome="/pages/jogadores/list.xhtml" />
 							
 							<p:commandButton icon="ui-icon-disk" value="Salvar"
 								actionListener="#{jogadoresBean.save}" update=":msgGlobal"
@@ -95,13 +95,13 @@
 								value="Atualizar" actionListener="#{jogadoresBean.edit}"
 								update=":msgGlobal" rendered="#{jogadoresBean.acao == 'edit'}"
 								disable="#{jogadoresBean.acao == 'details'}"
-								action="/pages/Clas/list.xhtml?faces-redirect=true " />
+								action="/pages/jogadores/list.xhtml?faces-redirect=true " />
 								
 							<p:commandButton icon="ui-icon-close" value="Excluir"
 								actionListener="#{jogadoresBean.delete}" update=":msgGlobal"
 								rendered="#{jogadoresBean.acao == 'delete'}"
 								disable="#{jogadoresBean.acao == 'details'}"
-								action="/pages/Clas/list.xhtml?faces-redirect=true " />
+								action="/pages/jogadores/list.xhtml?faces-redirect=true " />
 								
 						</h:panelGrid>
 						

@@ -62,7 +62,7 @@ public class LoginBean extends BaseBean {
 			} else {
 				setJogadores(2);
 				showInfo("Usuário autenticado com sucesso!");
-				return "/pages/index.xhtml?faces-redirect=true";
+				return "/pages/jogadores/list.xhtml?faces-redirect=true";
 			}
 
 		} catch (Exception ex) {

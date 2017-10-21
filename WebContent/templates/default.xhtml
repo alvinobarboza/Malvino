@@ -1513,18 +1513,14 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 					<p:submenu label="Logar">
 						<p:menuitem value="Fazer Login" outcome="/pages/login.xhtml"></p:menuitem>
 					</p:submenu>
-					
-					<p:submenu label="Principal">
-						<p:menuitem icon="ui-icon-extlink" value="Home" outcome="/pages/index.xhtml"></p:menuitem>
-					</p:submenu>
-					
+									
 				</p:panelMenu>
 				
 			</h:form>
 			
 		</p:layoutUnit>
 
-		<p:layoutUnit position="west" size="200" header="Menus" rendered="#{loginBean.verifica == 1}">
+		<p:layoutUnit position="west" size="200" header="Menus" rendered="#{loginBean.verifica == 2}">
 		
 			<h:form background="white" margin="30px auto" border-radius=" 0.8px"
 				overflow="hidden" position=" relative"
@@ -1542,12 +1538,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 						<p:menuitem value="Jogos" outcome="/pages/jogos/list.xhtml"></p:menuitem>
 						<p:menuitem value="Publicidades" outcome="/pages/publicidades/list.xhtml"></p:menuitem>
 						<p:menuitem value="Categorizar jogos e Publicidades" outcome="/pages/categorias/list.xhtml"></p:menuitem>
-						<p:menuitem value="Gerar relatórios" outcome="/pages/relatorios/list.xhtml"></p:menuitem>
 					</p:submenu>
 					
 					<p:submenu label="Relatorios">
-						<p:menuitem value="Relatório de Jogadores" outcome="/pages/relatorios/jogadores.xhtml"></p:menuitem>
-						<p:menuitem value="Relatório de Jogos" outcome="/pages/relatorios/jogos.xhtml"></p:menuitem>
+						<p:menuitem value="Relatório de Jogos e jogadores" outcome="/pages/relatorios/jogos-jogadores.xhtml"></p:menuitem>
 						<p:menuitem value="Relatório de Publicidades" outcome="/pages/relatorios/publicidades.xhtml"></p:menuitem>
 					</p:submenu>
 				</p:panelMenu>

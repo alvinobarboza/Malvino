@@ -5,16 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.hibernate.Query;
 
 import com.model.Jogadores;
 
 public class JogadoresDAO extends HibernateDAO<Jogadores> {
 
-	private static final boolean Jogadores = false;
-	protected EntityManager em;
 
 	public JogadoresDAO() {
 		super(Jogadores.class);

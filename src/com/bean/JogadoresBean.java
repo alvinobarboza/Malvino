@@ -9,7 +9,6 @@ import com.dao.PerfisDAO;
 import com.dao.JogadoresDAO;
 import com.model.Perfis;
 import com.model.Jogadores;
-import com.view.UsuarioView;
 
 @ManagedBean
 @SessionScoped
@@ -90,6 +89,7 @@ public class JogadoresBean extends BaseBean implements IBO, ICRUDBean {
 	public void listJogadores(){
 		listJogadores = getJogadoresDAO().getBeans();
 	}
+	
 	
 	@Override
 	public void find() {

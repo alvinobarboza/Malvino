@@ -7,7 +7,6 @@ import javax.faces.bean.SessionScoped;
 
 import com.dao.ClasDAO;
 import com.model.Clas;
-import com.model.Jogadores;
 
 @ManagedBean
 @SessionScoped
