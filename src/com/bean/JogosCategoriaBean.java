@@ -24,11 +24,9 @@ public class JogosCategoriaBean extends BaseBean implements IBO, ICRUDBean {
 	private List<Jogos> listJogos;
 	private List<Categorias> listCategorias;
 	private List<JogosCategoria> listJogosCategorias;
-	private int codigo;
-	private String acao;// create, update, delete
-	
-	
-	
+	private int codigoJogo;
+	private int codigoCategoria;
+		
 	
 	public Jogos getJogos() {
 		if(jogos == null)
@@ -107,6 +105,8 @@ public class JogosCategoriaBean extends BaseBean implements IBO, ICRUDBean {
 	}
 
 	public List<Categorias> getListCategorias() {
+		if(listCategorias == null)
+			listCategorias = getCategoriasDAO().getBeans();
 		return listCategorias;
 	}
 
@@ -114,22 +114,22 @@ public class JogosCategoriaBean extends BaseBean implements IBO, ICRUDBean {
 		this.listCategorias = listCategorias;
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public int getCodigoJogo() {
+		return codigoJogo;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getAcao() {
-		return acao;
-	}
-
-	public void setAcao(String acao) {
-		this.acao = acao;
+	public void setCodigoJogo(int codigo) {
+		this.codigoJogo = codigo;
 	}
 	
+	public int getCodigoCategoria() {
+		return codigoCategoria;
+	}
+
+	public void setCodigoCategoria(int codigo) {
+		this.codigoCategoria = codigo;
+	}
+
 	public void listJogosCategoria(){
 		listJogosCategorias = getJogosCategoriaDAO().getBeans();
 	}
@@ -143,8 +143,8 @@ public class JogosCategoriaBean extends BaseBean implements IBO, ICRUDBean {
 	@Override
 	public void find() {
 		try {
-			if (codigo != 0)
-				jogosCategoria = getJogosCategoriaDAO().getBean(codigo);
+			if (codigoJogo != 0 && codigoCategoria != 0)
+				jogosCategoria = getJogosCategoriaDAO().getBeanID(codigoJogo,codigoCategoria);
 			else
 				jogosCategoria = new JogosCategoria();
 		} catch (Exception e) {
@@ -156,14 +156,7 @@ public class JogosCategoriaBean extends BaseBean implements IBO, ICRUDBean {
 
 	@Override
 	public void list() {
-		if (isNullOrEmpty(getJogosCategoria().getJogo().getNome()) == false) {
-			JogosCategoria bean = new JogosCategoria();
-			bean.getJogo().setNome(getJogosCategoria().getJogo().getNome());
-			
-			listJogosCategorias = getJogosCategoriaDAO().getBeansByExample(bean);
-		} else {
-			listJogosCategorias = getJogosCategoriaDAO().getBeans();
-		}
+		
 	}
 
 	@Override
@@ -226,10 +219,10 @@ public class JogosCategoriaBean extends BaseBean implements IBO, ICRUDBean {
 
 	@Override
 	public void validateModel() {
-		if (isNullOrEmpty(getJogosCategoria().getJogo().getNome()) == true)
+		if (getJogosCategoria().getJogos().getIdJogo() == 0)
 			showAlert("Jogo não foi selecionado");
 		
-		if (isNullOrEmpty(getJogosCategoria().getCategoria().getNomeCategoria()) == true)
+		if (getJogosCategoria().getCategorias().getIdCategoria() == 0)
 			showAlert("Categoria não foi selecionado");
 	}
 

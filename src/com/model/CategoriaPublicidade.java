@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "jogadores_jogos")
+@Table(name = "categorias_publicidades")
 public class CategoriaPublicidade extends BaseModel implements Serializable{
 	
 	/**
@@ -34,24 +34,28 @@ public class CategoriaPublicidade extends BaseModel implements Serializable{
 	@Column(name="dt_data_cadastro")
 	private Date dataRegistro;
 
-	public Publicidades getPublicidade() {
+	public Publicidades getPublicidades() {
 		if(publicidades == null)
 			publicidades = new Publicidades();
 		return publicidades;
 	}
 
-	public void setPublicidade(Publicidades publicidade) {
+	public void setPublicidades(Publicidades publicidade) {
 		this.publicidades = publicidade;
 	}
 
-	public Categorias getCategoria() {
+	public Categorias getCategorias() {
 		if(categorias == null)
 			categorias = new Categorias();
 		return categorias;
 	}
 
-	public void setCategoria(Categorias categoria) {
+	public void setCategorias(Categorias categoria) {
 		this.categorias = categoria;
+	}
+
+	public void setDataRegistro(Date dataRegistro) {
+		this.dataRegistro = dataRegistro;
 	}
 
 	public Date getDataRegistro() {

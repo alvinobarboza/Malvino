@@ -24,11 +24,9 @@ public class CategoriaPublicidadeBean extends BaseBean implements IBO, ICRUDBean
 	private List<Publicidades> listPublicidades;
 	private List<Categorias> listCategorias;
 	private List<CategoriaPublicidade> listCategoriaPublicidades;
-	private int codigo;
-	private String acao;// create, update, delete
-	
-	
-	
+	private int codigoPublicidade;
+	private int codigoCategoria;
+		
 	
 	public Publicidades getPublicidades() {
 		if(publicidades == null)
@@ -70,22 +68,21 @@ public class CategoriaPublicidadeBean extends BaseBean implements IBO, ICRUDBean
 		CategoriaPublicidadeDAO = categoriaPublicidadeDAO;
 	}
 
-	
 	public List<Publicidades> getListPublicidades() {
+		
+		if(listPublicidades == null){
+			listPublicidades = getPublicidadesDAO().getBeans();
+		}
 		return listPublicidades;
-	}
-
-	public void setListPublicidades(List<Publicidades> listPublicidades) {
-		this.listPublicidades = listPublicidades;
+		
 	}
 
 	public List<CategoriaPublicidade> getListCategoriaPublicidades() {
+		if(listCategoriaPublicidades == null)
+			listCategoriaPublicidades = getCategoriaPublicidadeDAO().getBeans();
 		return listCategoriaPublicidades;
 	}
 
-	public void setListCategoriaPublicidades(List<CategoriaPublicidade> listCategoriaPublicidades) {
-		this.listCategoriaPublicidades = listCategoriaPublicidades;
-	}
 
 	public Categorias getCategorias() {
 		if (Categorias == null)
@@ -108,6 +105,8 @@ public class CategoriaPublicidadeBean extends BaseBean implements IBO, ICRUDBean
 	}
 
 	public List<Categorias> getListCategorias() {
+		if(listCategorias == null)
+			listCategorias = getCategoriasDAO().getBeans();
 		return listCategorias;
 	}
 
@@ -115,23 +114,23 @@ public class CategoriaPublicidadeBean extends BaseBean implements IBO, ICRUDBean
 		this.listCategorias = listCategorias;
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public int getCodigoPublicidade() {
+		return codigoPublicidade;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getAcao() {
-		return acao;
-	}
-
-	public void setAcao(String acao) {
-		this.acao = acao;
+	public void setCodigoPublicidade(int codigo) {
+		this.codigoPublicidade = codigo;
 	}
 	
-	public void listCategoriaPublicidade(){
+	public int getCodigoCategoria() {
+		return codigoCategoria;
+	}
+
+	public void setCodigoCategoria(int codigo) {
+		this.codigoCategoria = codigo;
+	}
+
+	public void listCategoriaPublicidades(){
 		listCategoriaPublicidades = getCategoriaPublicidadeDAO().getBeans();
 	}
 	public void listPublicidades(){
@@ -144,8 +143,8 @@ public class CategoriaPublicidadeBean extends BaseBean implements IBO, ICRUDBean
 	@Override
 	public void find() {
 		try {
-			if (codigo != 0)
-				categoriaPublicidade = getCategoriaPublicidadeDAO().getBean(codigo);
+			if (codigoPublicidade != 0 && codigoCategoria != 0)
+				categoriaPublicidade = getCategoriaPublicidadeDAO().getBeanID(codigoPublicidade,codigoCategoria);
 			else
 				categoriaPublicidade = new CategoriaPublicidade();
 		} catch (Exception e) {
@@ -157,14 +156,7 @@ public class CategoriaPublicidadeBean extends BaseBean implements IBO, ICRUDBean
 
 	@Override
 	public void list() {
-		if (isNullOrEmpty(getCategoriaPublicidade().getPublicidade().getNome()) == false) {
-			CategoriaPublicidade bean = new CategoriaPublicidade();
-			bean.getPublicidade().setNome(getCategoriaPublicidade().getPublicidade().getNome());
-			
-			listCategoriaPublicidades = getCategoriaPublicidadeDAO().getBeansByExample(bean);
-		} else {
-			listCategoriaPublicidades = getCategoriaPublicidadeDAO().getBeans();
-		}
+		
 	}
 
 	@Override
@@ -227,10 +219,10 @@ public class CategoriaPublicidadeBean extends BaseBean implements IBO, ICRUDBean
 
 	@Override
 	public void validateModel() {
-		if (isNullOrEmpty(getCategoriaPublicidade().getPublicidade().getNome()) == true)
+		if (getCategoriaPublicidade().getPublicidades().getIdPublicidade() == 0)
 			showAlert("Publicidade não foi selecionado");
 		
-		if (isNullOrEmpty(getCategoriaPublicidade().getCategoria().getNomeCategoria()) == true)
+		if (getCategoriaPublicidade().getCategorias().getIdCategoria() == 0)
 			showAlert("Categoria não foi selecionado");
 	}
 

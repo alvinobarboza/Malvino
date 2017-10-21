@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/default.xhtml">
+	<ui:define name="metadata">
+
+		<center>
+			<f:metadata>
+				<f:viewParam name="codigoJogo" value="#{jogosCategoriaBean.codigoJogo}" />
+				<f:viewParam name="codigoCategoria" value="#{jogosCategoriaBean.codigoCategoria}" />
+			</f:metadata>
+			<script src="meu_script.js"></script>
+			<f:event listener="#{jogosCategoriaBean.find}" type="preRenderView" />
+		</center>
+	</ui:define>
+	<ui:define name="conteudo">
+		<center>
+			<div style="font-size: 16px;" id="texto">
+				<p:fieldset legend="Tem certeza que deseja excluir?" toggleable="true">
+					<h:form id="frm">
+						<h:panelGrid columns="3">
+						
+							<p:commandButton icon="ui-icon-close" value="Sim"
+								actionListener="#{jogosCategoriaBean.delete}" update=":msgGlobal"
+								action="/pages/categorias/categoria-jogo.xhtml?faces-redirect=true " />
+								
+							<p:button value="Não" outcome="/pages/categorias/categoria-jogo" />
+								
+						</h:panelGrid>
+						
+					</h:form>
+				</p:fieldset>
+			</div>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>

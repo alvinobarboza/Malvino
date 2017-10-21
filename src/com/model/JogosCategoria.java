@@ -34,23 +34,27 @@ public class JogosCategoria extends BaseModel implements Serializable{
 	@Column(name="dt_data_cadastro")
 	private Date dataRegistro;
 	
-	public Jogos getJogo() {
+	public Jogos getJogos() {
 		if(jogos == null)
 			jogos = new Jogos();
 		return jogos;
 	}
 
-	public void setJogo(Jogos jogo) {
+	public void setJogos(Jogos jogo) {
 		this.jogos = jogo;
 	}
 
-	public Categorias getCategoria() {
+	public void setDataRegistro(Date dataRegistro) {
+		this.dataRegistro = dataRegistro;
+	}
+
+	public Categorias getCategorias() {
 		if(categorias == null)
 			categorias = new Categorias();
 		return categorias;
 	}
 
-	public void setCategoria(Categorias categoria) {
+	public void setCategorias(Categorias categoria) {
 		this.categorias = categoria;
 	}
 

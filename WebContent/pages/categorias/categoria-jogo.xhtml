@@ -6,81 +6,71 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/templates/default.xhtml">
-	<!--  <f:metadata name="metadata">
-		<f:event listener="#{categoriasBean.list}" type="preRenderView" />
-	</f:metadata>-->
 	<script src="meu_script.js"></script>
 	<ui:define name="conteudo">
 		<center>
 			<div style="font-size: 16px;" id="texto">
-				<h:outputText value="Jogos categorizados" />
+				
 				<hr></hr>
 				<div class="form-group">
 					<h:form>
 				
-					<p:outputLabel value="Selecione o jogo a ser categorizado" />
-							<p:selectOneMenu value="2">
-								
-								<f:selectItem itemValue="0"
-									itemLabel="Selecione o Jogo" />
-									
-								<f:selectItem itemValue="1"
-									itemLabel="Jogo 1" />
-									
-								<f:selectItem itemValue="2"
-									itemLabel="Jogo 2" />	
-																
-							</p:selectOneMenu>
+					<p:outputLabel value="Selecione o jogo" />
+					<p:selectOneMenu value="#{jogosCategoriaBean.jogosCategoria.jogos.idJogo}">
+						<f:selectItem itemValue="0"
+							itemLabel="Selecione um jogo" />
+						<f:selectItems value="#{jogosCategoriaBean.listJogos}" var="jogos"
+							itemValue="#{jogos.idJogo}" itemLabel="#{jogos.nome}" />
+						<f:validateBean />
+					</p:selectOneMenu>
+					
 					<br></br>
-					<br></br>		
+					<br></br>
+							
 					<p:outputLabel value="Selecione a categoria para o jogo" />
-							<p:selectOneMenu value="1">
-								
-								<f:selectItem itemValue="0"
-									itemLabel="Selecione a categoria" />
-									
-								<f:selectItem itemValue="1"
-									itemLabel="CAtegoria 1" />
-									
-								<f:selectItem itemValue="2"
-									itemLabel="Categoria 2" />	
-																
-							</p:selectOneMenu>
+					<p:selectOneMenu value="#{jogosCategoriaBean.jogosCategoria.categorias.idCategoria}">
+						<f:selectItem itemValue="0"
+							itemLabel="Selecione uma categoria" />
+						<f:selectItems value="#{jogosCategoriaBean.listCategorias}" var="categorias"
+							itemValue="#{categorias.idCategoria}" itemLabel="#{categorias.nomeCategoria}" />
+						<f:validateBean />
+					</p:selectOneMenu>
+					
 					<br></br>
 					<br></br>
-							<p:button value="Categorizar">
-								<f:param name="acao" value="new" />
-							</p:button>
+					<p:commandButton 
+						value="Categorizar" 
+						actionListener="#{jogosCategoriaBean.save}" 
+						update=":msgGlobal"
+						action="/pages/categorias/categoria-jogo.xhtml?faces-redirect=true"/>
 					</h:form>
 				</div>
 				<hr></hr>
+				<h:outputText value="Jogos categorizados" />
 				<h:form id="frm">
-					<p:dataTable emptyMessage="Nenhum registro
-				 encontrado"
-						id="gridcategorias" value="" var="categorias"
+					<p:dataTable emptyMessage="Nenhum registro encontrado"
+						id="gridjogoscategorias" value="#{jogosCategoriaBean.listJogosCategorias}" var="jogosCategoria"
 						paginator="true" rows="4">
 						<p:column headerText="Jogo">
 							<center>
-								<p:outputLabel value="Jogo 3" />
+								<p:outputLabel value="#{jogosCategoria.jogos.nome}" />
 							</center>
 						</p:column>
 						<p:column headerText="Categoria">
-							<p:outputLabel value="Categoria 3">
-							</p:outputLabel>
+							<center>
+								<p:outputLabel value="#{jogosCategoria.categorias.nomeCategoria}"/>
+							</center>
 						</p:column>
 					
 						<div class="principal principal-home">
-							<p:column>
-								<p:column>
-									<p:button icon="ui-icon-arrowrefresh-1-w" value="Editar"
-										title="Editar" >										
-									</p:button>
-								</p:column>
-							</p:column>
 							<p:column headerText="Opções">
-								<p:button icon="ui-icon-close" value="Excluir" title="Excluir"
-									outcome="/pages/categorias/crud.xhtml">
-								</p:button>
+								<center>
+									<p:button icon="ui-icon-close" value="Excluir" title="Excluir"
+										outcome="/pages/categorias/confirmacao-jogos.xhtml">
+										<f:param name="codigoJogo" value="#{jogosCategoria.jogos.idJogo}" />
+										<f:param name="codigoCategoria" value="#{jogosCategoria.categorias.idCategoria}" />
+									</p:button>
+								</center>	
 							</p:column>
 						</div>
 					</p:dataTable>

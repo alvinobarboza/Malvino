@@ -6,80 +6,71 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/templates/default.xhtml">
-	<!--  <f:metadata name="metadata">
-		<f:event listener="#{categoriasBean.list}" type="preRenderView" />
-	</f:metadata>-->
 	<script src="meu_script.js"></script>
 	<ui:define name="conteudo">
 		<center>
 			<div style="font-size: 16px;" id="texto">
-				<h:outputText value="Publicidades categorizadas" />
+				
 				<hr></hr>
 				<div class="form-group">
 					<h:form>
 				
-					<p:outputLabel value="Selecione a publicidae a ser categorizada" />
-							<p:selectOneMenu value="2">
-								
-								<f:selectItem itemValue="0"
-									itemLabel="Selecione a publicidade" />
-									
-								<f:selectItem itemValue="1"
-									itemLabel="Publicidade 1" />
-									
-								<f:selectItem itemValue="2"
-									itemLabel="Publicidade 2" />	
-																
-							</p:selectOneMenu>
-					<br></br>
-					<br></br>		
-					<p:outputLabel value="Selecione a categoria para a publicidade" />
-							<p:selectOneMenu value="1">
-								
-								<f:selectItem itemValue="0"
-									itemLabel="Selecione a categoria" />
-									
-								<f:selectItem itemValue="1"
-									itemLabel="Categoria 1" />
-									
-								<f:selectItem itemValue="2"
-									itemLabel="Categoria 2" />	
-																
-							</p:selectOneMenu>
+					<p:outputLabel value="Selecione a Publicidade" />
+					<p:selectOneMenu value="#{categoriaPublicidadeBean.categoriaPublicidade.publicidades.idPublicidade}">
+						<f:selectItem itemValue="0"
+							itemLabel="Selecione uma publicidade" />
+						<f:selectItems value="#{categoriaPublicidadeBean.listPublicidades}" var="publicidades"
+							itemValue="#{publicidades.idPublicidade}" itemLabel="#{publicidades.nome}" />
+						<f:validateBean />
+					</p:selectOneMenu>
+					
 					<br></br>
 					<br></br>
-							<p:button value="Categorizar">
-								<f:param name="acao" value="new" />
-							</p:button>
+							
+					<p:outputLabel value="Selecione a categoria para a Publicidade" />
+					<p:selectOneMenu value="#{categoriaPublicidadeBean.categoriaPublicidade.categorias.idCategoria}">
+						<f:selectItem itemValue="0"
+							itemLabel="Selecione uma categoria" />
+						<f:selectItems value="#{categoriaPublicidadeBean.listCategorias}" var="categorias"
+							itemValue="#{categorias.idCategoria}" itemLabel="#{categorias.nomeCategoria}" />
+						<f:validateBean />
+					</p:selectOneMenu>
+					
+					<br></br>
+					<br></br>
+					<p:commandButton 
+						value="Categorizar" 
+						actionListener="#{categoriaPublicidadeBean.save}" 
+						update=":msgGlobal"
+						action="/pages/categorias/categoria-publicidade.xhtml?faces-redirect=true"/>
 					</h:form>
 				</div>
 				<hr></hr>
+				<h:outputText value="Publicidades categorizados" />
 				<h:form id="frm">
-					<p:dataTable emptyMessage="Nenhum registro
-				 encontrado"
-						id="gridcategorias" value="" var="categorias"
+					<p:dataTable emptyMessage="Nenhum registro encontrado"
+						id="gridpublicidadecategorias" value="#{categoriaPublicidadeBean.listCategoriaPublicidades}" var="categoriaPublicidade"
 						paginator="true" rows="4">
 						<p:column headerText="Publicidade">
 							<center>
-								<p:outputLabel value="Publicidade 3" />
+								<p:outputLabel value="#{categoriaPublicidade.publicidades.nome}" />
 							</center>
 						</p:column>
 						<p:column headerText="Categoria">
-							<p:outputLabel value="Categoria 3">
-							</p:outputLabel>
+							<center>
+								<p:outputLabel value="#{categoriaPublicidade.categorias.nomeCategoria}"/>
+							</center>
 						</p:column>
 					
 						<div class="principal principal-home">
-							<p:column>
-								<p:column>
-									<p:button icon="ui-icon-arrowrefresh-1-w" value="Editar"
-										title="Editar" >										
-									</p:button>
-								</p:column>
-							</p:column>
 							<p:column headerText="Opções">
-								<p:button icon="ui-icon-close" value="Excluir" title="Excluir">
-								</p:button>
+								<center>
+									<p:button icon="ui-icon-close" value="Excluir" title="Excluir"
+										outcome="/pages/categorias/confirmacao-publicidade.xhtml">
+										<f:param name="codigoPublicidade" value="#{categoriaPublicidade.publicidades.idPublicidade}" />
+										<f:param name="codigoCategoria" value="#{categoriaPublicidade.categorias.idCategoria}" />
+									</p:button>
+								</center>	
 							</p:column>
 						</div>
 					</p:dataTable>

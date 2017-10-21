@@ -13,7 +13,7 @@
 	<ui:define name="conteudo">
 		<center>
 			<div style="font-size: 16px;" id="texto">
-				<h:outputText value="Usuários Cadastrados" />
+				<h:outputText value="Categorias Cadastrados" />
 				<hr></hr>
 				<div class="form-group">
 					<h:form>
@@ -59,20 +59,22 @@
 					
 						<div class="principal principal-home">
 							<p:column>
-								<p:column>
-									<p:button icon="ui-icon-arrowrefresh-1-w" value="Editar"
+								<center>
+								<p:button icon="ui-icon-arrowrefresh-1-w" value="Editar"
 										title="Editar" outcome="/pages/categorias/crud.xhtml">
 										<f:param name="acao" value="edit" />
 										<f:param name="codigo" value="#{categorias.idCategoria}" />
 									</p:button>
-								</p:column>
+								</center>	
 							</p:column>
 							<p:column headerText="Opções">
+								<center>
 								<p:button icon="ui-icon-close" value="Excluir" title="Excluir"
 									outcome="/pages/categorias/crud.xhtml">
 									<f:param name="acao" value="delete" />
 									<f:param name="codigo" value="#{categorias.idCategoria}" />
 								</p:button>
+								</center>
 							</p:column>
 						</div>
 					</p:dataTable>
