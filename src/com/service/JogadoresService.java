@@ -83,13 +83,9 @@ public class JogadoresService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response autenticar(Logar logar) throws SQLException {
+				
 		
-		String login = logar.getLogin();
-		String senha = logar.getSenha();
-		
-		//System.out.println(logar.getLogin());
-		
-		if(getJogadoresDAO().login(login, senha)){
+		if(getJogadoresDAO().login(logar.getLogin(),logar.getSenha())){
 			return Response.ok().entity(logar).build();
 		}else{	
 			logar.setLogin(logar.getLogin()+" Usuário não encontrado");

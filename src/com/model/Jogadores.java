@@ -65,7 +65,7 @@ public class Jogadores extends BaseModel {
 	
 	
 	public void setAtivo(boolean ativo) {
-		Ativo = ativo;
+		this.Ativo = ativo;
 	}
 	
 	public int getIdJogador() {

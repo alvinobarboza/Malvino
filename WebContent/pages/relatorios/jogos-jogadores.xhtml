@@ -6,18 +6,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/templates/default.xhtml">
-	<f:metadata name="metadata">
-		<f:event listener="#{jogadoresBean.list}" type="preRenderView" />
-	</f:metadata>
+	
 	<script src="meu_script.js"></script>
 	<ui:define name="conteudo">
 		<center>
 			<div style="font-size: 16px;" id="texto">
-			<h:panelGrid columns="2" id="gridClas">
-				<h:outputText value="Jogos" />
-				<hr></hr>
-				<br></br>
-				<br></br>
+			<table>
+				<tr>
+					<td align="center">Relatório de Jogos</td>
+					<td align="center">Relatório de Jogadores</td>
+				</tr>
+				<tr>
+					<td>
+					<br />
+					<br />
+						<h:panelGrid columns="1">
+				
 				<p:outputLabel value="Ordenar jogos : " />
 				<p:selectOneMenu value="1">
 													
@@ -28,15 +32,82 @@
 						itemLabel="Menos jogados" />	
 													
 				</p:selectOneMenu>
-				<br></br>
-				<br></br>
-				<br></br>
-				<br></br>
+				
+				<p:outputLabel value="Data Inicial:" />
+        		<p:calendar locale="de" navigator="true" pattern="yyyy-MMM-dd" />
+ 
+				
+				<p:outputLabel value="Data Final:" />
+        		<p:calendar  locale="de" navigator="true" pattern="yyyy-MMM-dd" />
+ 
+				
+				<p:outputLabel value="Jogo : " />
+				<p:selectOneMenu value="1">
+													
+					<f:selectItem itemValue="1"
+						itemLabel="Jogo 1" />
+						
+					<f:selectItem itemValue="2"
+						itemLabel="Jogo 2" />	
+													
+				</p:selectOneMenu>
+	
 			
-				<p:button value="Gerar relatório">
+				<p:button value="Gerar relatório de Jogos">
 					<f:param name="acao" value="new" />
 				</p:button>
 			</h:panelGrid>
+					
+					
+					</td>
+					
+					<td>
+					<br />
+					<br />
+						<h:panelGrid columns="1" id="gridClas">
+				
+				<p:outputLabel value="Genêro do Jogador " />
+				<p:selectOneMenu value="1">
+													
+					<f:selectItem itemValue="1"
+						itemLabel="Masculino" />
+						
+					<f:selectItem itemValue="2"
+						itemLabel="Feminino" />	
+													
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Data Inicial:" />
+        		<p:calendar locale="de" navigator="true" pattern="yyyy-MMM-dd" />
+ 
+				
+				<p:outputLabel value="Data Final:" />
+        		<p:calendar  locale="de" navigator="true" pattern="yyyy-MMM-dd" />
+ 
+				
+				<p:outputLabel value="Jogo : " />
+				<p:selectOneMenu value="1">
+													
+					<f:selectItem itemValue="1"
+						itemLabel="Jogo 1" />
+						
+					<f:selectItem itemValue="2"
+						itemLabel="Jogo 2" />	
+													
+				</p:selectOneMenu>
+	
+			
+				<p:button value="Gerar relatório de Jogador">
+					<f:param name="acao" value="new" />
+				</p:button>
+			</h:panelGrid>
+					
+					</td>
+				</tr>				
+			</table>
+			
+			
+			
 			</div>
 		</center>
 	</ui:define>
