@@ -1,9 +1,14 @@
-<HEAD>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
 
-  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-  <meta http-equiv="Content-Language" content="pt-br">
 
-  <SCRIPT LANGUAGE="JavaScript">
+  <script language="JavaScript">
 
     var x = "http://localhost:8080/Malvino/resources/imagens/X.png";
 
@@ -220,7 +225,17 @@
       if (all == 0) {
         if (confirm("Quer desistir desse jogo?")) reset();
       }
-      if (all > 0) reset();
+      if (all > 0){ 
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.onreadystatechange = function() {
+    	    if (this.readyState == 4 && this.status == 200) {
+    	      document.getElementById("demo").innerHTML = this.responseText;
+    	    }
+    	  };
+    	  xhttp.open("GET", "http://localhost:8080/Malvino/rest/JogosTeste/derrota/"+ls, true);
+    	  xhttp.send();
+    	  reset();
+      }
     }
     function reset() {
       all = 0;
@@ -253,21 +268,21 @@
     }
 
   </script>
-</HEAD>
+</head>
 
 
-<BODY>
+<body>
 
   <center>
-    <form name=game>
-      <table border=0>
+    <form name="game">
+      <table border="0">
         <td>
-          <table border=0 style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+          <table border="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
             <tr>
               <td style="border-left-width: 1; border-right-style: solid; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1"
                 bordercolor="#000000">
                 <a href="javascript:yourChoice('A')">
-                  <img src="http://localhost:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=A alt="Top-Left">
+                  <img src="http://localhost:8080/Malvino/resources/imagens/branco.png" border="0" height="100" width="100" name="A" alt="Top-Left">
                 </a>
               </td>
               <td bordercolor="#000000">
@@ -334,7 +349,9 @@
             </tr>
             <tr>
               <td>
-                <input type=text size=5 name=computer>
+                <input type="text" size="5" name="computer"/>
+                <input type="text" size="5" name="computer1"/>
+           
               </td>
               <td>
                 <font face="Verdana" style="font-size: 8pt">Computador</font>
@@ -359,9 +376,9 @@
         <tr>
           <td>
             <p align="center">
-              <input type=button value="Jogar Denovo" onClick="playAgain();">
+              <input type="button" value="Jogar Denovo" onclick="playAgain();"/>
 
-              <input type=button value="Como Jogar" onClick="help();">
+              <input type="button" value="Como Jogar" onclick="help();"/>
           </td>
           <td>
           </td>
@@ -388,9 +405,10 @@
       </table>
     </form>
   </center>
-
+	
   <p>
     <p align="center">
     </p>
   </p>
-</BODY>
+</body>
+</html>
