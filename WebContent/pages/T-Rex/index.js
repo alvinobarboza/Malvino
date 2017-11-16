@@ -558,7 +558,7 @@
                     }
                 } else {
                     this.gameOver();
-                    sendScore();
+                    
                 }
 
                 var playAchievementSound = this.distanceMeter.update(deltaTime,
@@ -880,9 +880,9 @@
 
     function sendScore(score){
 
-        var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "http://localhost:8080/Malvino/rest/CapturarPontosJogos/T-rex/"+score, true);
-	xhttp.send();
+	    var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/T-rex/"+score, true);
+		xhttp.send();
 
     };
     /**
@@ -940,15 +940,6 @@
     function getRandomNum(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    
-    function sendScore (){
-		var teste = this.highestScore;
-		
-    	var xhttp = new XMLHttpRequest();
-    	this.xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/contador/"+teste, true);
-    	this.xhttp.send();
-    }
-
 
     /**
      * Vibrate on mobile devices.

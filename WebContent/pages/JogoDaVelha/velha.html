@@ -38,7 +38,7 @@
     var ls = 0;
     var ts = 0;
     function help() {
-      alert("Bem-Vindo ao jogo da velha ! VocÃª joga com o X e o computador com o 0. Escolha o espaÃª que vocÃª queira colocar seu X clicando nele. O primeiro que conseguir fazer uma linha de 3 Ã© o vencedor. Boa Sorte!!")
+      alert("Bem-Vindo ao jogo da velha ! Você joga com o X e o computador com o 0. Escolha o espaço que você queira colocar seu X clicando nele. O primeiro que conseguir fazer uma linha de 3 é o vencedor. Boa Sorte!!")
     }
     function logicOne() {
       if ((a == 1) && (b == 1) && (c == 1)) all = 1;
@@ -180,7 +180,7 @@
       }
     }
     function taken() {
-      alert("Este espaÃ§o jÃ¡ estÃ¡ ocupado, por favor escolha outro.")
+      alert("Este espaço já está ocupado, por favor escolha outro.")
       pause = 1;
     }
     function myChoice() {
@@ -208,40 +208,24 @@
       process();
     }
     function ended() {
-      alert("O jogo acabou, para jogar novamente clique no botÃ£o Jogar Denovo.")
+      alert("O jogo acabou, para jogar novamente clique no botão Jogar Denovo.")
     }
     function process() {
       logicOne();
-<<<<<<< HEAD
-      if (all == 1) { alert("Você ganhou, parabêns!"); wn++; }
-      if (all == 2) { alert("Te peguei! Eu venci!"); ls++; 
-	      var xhttp = new XMLHttpRequest();
-		  //xhttp.onreadystatechange = function() {
-		    //if (this.readyState == 4 && this.status == 200) {
-		      //document.getElementById("demo").innerHTML = this.responseText;
-		    //}
-		  //};
-		  xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/contador/"+ls, true);
-		  xhttp.send();
-      }
-      if (all == 3) { alert("Empate não pega mal nem pra mim nem pra você. Vamos jogar denovo?"); ts++; }
-      if (all != 0) {
-=======
-	var xhttp = new XMLHttpRequest();
-      if (all == 1) { alert("VocÃª ganhou, parabÃªns!"); wn++; 
-	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/CapturarPontosJogos/JogoVelhaVitoria/"+wn, true);
+		var xhttp = new XMLHttpRequest();
+      if (all == 1) { alert("Você ganhou, parabêns!"); wn++; 
+	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaVitoria/"+wn, true);
 		  xhttp.send();
       }
       if (all == 2) { alert("Te peguei! Eu venci!"); ls++; 
-	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/CapturarPontosJogos/JogoVelhaDerrota/"+ls, true);
+	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaDerrota/"+ls, true);
 		  xhttp.send();
       }
-      if (all == 3) { alert("Empate nÃ£o pega mal nem pra mim nem pra vocÃª. Vamos jogar denovo?"); ts++; 
-	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/CapturarPontosJogos/JogoVelhaEmpate/"+ts, true);
+      if (all == 3) { alert("Empate não pega mal nem pra mim nem pra você. Vamos jogar denovo?"); ts++; 
+	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaEmpate/"+ts, true);
 		  xhttp.send();
      }
 	if (all != 0) {
->>>>>>> branch 'master' of https://github.com/alvinobarboza/Malvino.git
         document.game.you.value = wn;
         document.game.computer.value = ls;
         document.game.ties.value = ts;
@@ -252,10 +236,6 @@
         if (confirm("Quer desistir desse jogo?")) reset();
       }
       if (all > 0){ 
-<<<<<<< HEAD
-    	 
-=======
->>>>>>> branch 'master' of https://github.com/alvinobarboza/Malvino.git
     	  reset();
       }
     }
@@ -366,13 +346,12 @@
                 <input type=text size=5 name=you>
               </td>
               <td>
-                <font face="Verdana" style="font-size: 8pt">VocÃª</font>
+                <font face="Verdana" style="font-size: 8pt">Você</font>
               </td>
             </tr>
             <tr>
               <td>
-                <input type="text" size="5" name="computer"/>
-                <input type="text" size="5" name="computer1"/>
+                <input type="text" size="5" name="computer"/>             
            
               </td>
               <td>
