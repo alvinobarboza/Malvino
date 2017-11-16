@@ -36,11 +36,40 @@ public class JogosService {
 	}*/
 	
 	@GET
+<<<<<<< HEAD
 	@Path("/contador/{i}")
 	public void autenticar(@PathParam("i") String logar) {
+=======
+	@Path("/T-rex/{i}")
+	public void trex(@PathParam("i") String logar) {
+>>>>>>> branch 'master' of https://github.com/alvinobarboza/Malvino.git
 				
 		
-		System.out.println(logar);
+		System.out.println("high score T-rex: "+logar);
+	
+	}
+	@GET
+	@Path("/JogoVelhaDerrota/{i}")
+	public void vDerrota(@PathParam("i") String logar) {
+				
+		
+		System.out.println("Derrotas: "+logar);
+	
+	}
+	@GET
+	@Path("/JogoVelhaVitoria/{i}")
+	public void vVitoria(@PathParam("i") String logar) {
+				
+		
+		System.out.println("Vitórias: "+logar);
+	
+	}
+	@GET
+	@Path("/JogoVelhaEmpate/{i}")
+	public void vEmpate(@PathParam("i") String logar) {
+				
+		
+		System.out.println("Empates: "+logar);
 	
 	}
 }

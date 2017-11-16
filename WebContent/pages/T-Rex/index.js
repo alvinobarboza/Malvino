@@ -878,7 +878,13 @@
         }
     };
 
+    function sendScore(score){
 
+        var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "http://localhost:8080/Malvino/rest/CapturarPontosJogos/T-rex/"+score, true);
+	xhttp.send();
+
+    };
     /**
      * Updates the canvas size taking into
      * account the backing store pixel ratio and
@@ -2104,6 +2110,7 @@
                 distance).substr(-this.maxScoreUnits);
 
             this.highScore = ['10', '11', ''].concat(highScoreStr.split(''));
+            sendScore(distance);
         },
 
         /**
