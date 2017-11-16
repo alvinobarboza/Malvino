@@ -21,7 +21,7 @@ import com.servicecontroller.Logar;
 
 
 
-@Path("/JogosTeste") 
+@Path("/ScoreGame") 
 public class JogosService {
 	
 	String num;
@@ -36,7 +36,7 @@ public class JogosService {
 	}*/
 	
 	@GET
-	@Path("/derrota/{i}")
+	@Path("/contador/{i}")
 	public void autenticar(@PathParam("i") String logar) {
 				
 		

@@ -213,7 +213,16 @@
     function process() {
       logicOne();
       if (all == 1) { alert("Você ganhou, parabêns!"); wn++; }
-      if (all == 2) { alert("Te peguei! Eu venci!"); ls++; }
+      if (all == 2) { alert("Te peguei! Eu venci!"); ls++; 
+	      var xhttp = new XMLHttpRequest();
+		  //xhttp.onreadystatechange = function() {
+		    //if (this.readyState == 4 && this.status == 200) {
+		      //document.getElementById("demo").innerHTML = this.responseText;
+		    //}
+		  //};
+		  xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/contador/"+ls, true);
+		  xhttp.send();
+      }
       if (all == 3) { alert("Empate não pega mal nem pra mim nem pra você. Vamos jogar denovo?"); ts++; }
       if (all != 0) {
         document.game.you.value = wn;
@@ -226,14 +235,7 @@
         if (confirm("Quer desistir desse jogo?")) reset();
       }
       if (all > 0){ 
-    	  var xhttp = new XMLHttpRequest();
-    	  xhttp.onreadystatechange = function() {
-    	    if (this.readyState == 4 && this.status == 200) {
-    	      document.getElementById("demo").innerHTML = this.responseText;
-    	    }
-    	  };
-    	  xhttp.open("GET", "http://localhost:8080/Malvino/rest/JogosTeste/derrota/"+ls, true);
-    	  xhttp.send();
+    	 
     	  reset();
       }
     }

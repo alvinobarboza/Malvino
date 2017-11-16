@@ -558,6 +558,7 @@
                     }
                 } else {
                     this.gameOver();
+                    sendScore();
                 }
 
                 var playAchievementSound = this.distanceMeter.update(deltaTime,
@@ -787,12 +788,13 @@
             if (this.distanceRan > this.highestScore) {
                 this.highestScore = Math.ceil(this.distanceRan);
                 this.distanceMeter.setHighScore(this.highestScore);
+          	  
             }
 
             // Reset the time clock.
             this.time = getTimeStamp();
         },
-
+        
         stop: function () {
             this.playing = false;
             this.paused = true;
@@ -807,6 +809,8 @@
                 this.tRex.update(0, Trex.status.RUNNING);
                 this.time = getTimeStamp();
                 this.update();
+                
+                
             }
         },
 
@@ -827,6 +831,8 @@
                 this.playSound(this.soundFx.BUTTON_PRESS);
                 this.invert(true);
                 this.update();
+                
+              
             }
         },
 
@@ -927,6 +933,14 @@
      */
     function getRandomNum(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    function sendScore (){
+		var teste = this.highestScore;
+		
+    	var xhttp = new XMLHttpRequest();
+    	this.xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/contador/"+teste, true);
+    	this.xhttp.send();
     }
 
 
@@ -1871,6 +1885,8 @@
         this.config = DistanceMeter.config;
         this.maxScoreUnits = this.config.MAX_DISTANCE_UNITS;
         this.init(canvasWidth);
+        
+        
     };
 
 
@@ -2094,6 +2110,7 @@
          * Reset the distance meter back to '00000'.
          */
         reset: function () {
+        	
             this.update(0);
             this.acheivement = false;
         }
