@@ -874,10 +874,9 @@
 
     function sendScore(score){
 
-        document.getElementById('teste').value = score;
         var xhttp = new XMLHttpRequest();
-		  xhttp.open("GET", "http://localhost:8080/Malvino/rest/JogosTeste/derrota/"+score, true);
-		  xhttp.send();
+	xhttp.open("GET", "http://localhost:8080/Malvino/rest/CapturarPontosJogos/T-rex/"+score, true);
+	xhttp.send();
 
     };
     /**
