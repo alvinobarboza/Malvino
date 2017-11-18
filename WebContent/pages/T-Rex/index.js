@@ -877,14 +877,15 @@
             }
         }
     };
-
+    
     function sendScore(score){
 
 	    var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/T-rex/"+score, true);
+		xhttp.open("GET", "http://malvinoservice.hopto.org:8080/Malvino/rest/ScoreGame/T-rex/"+score, true);
 		xhttp.send();
 
     };
+    
     /**
      * Updates the canvas size taking into
      * account the backing store pixel ratio and
