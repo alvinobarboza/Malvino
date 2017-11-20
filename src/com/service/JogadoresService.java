@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import com.dao.JogadoresDAO;
 import com.model.Jogadores;
+import com.servicecontroller.Email;
 import com.servicecontroller.JogadoresController;
 import com.servicecontroller.Logar;
 
@@ -91,6 +92,26 @@ public class JogadoresService {
 			logar.setLogin(logar.getLogin()+" Usuário não encontrado");
 			return Response.status(400).entity(logar).build();
 		}
+	
+	}
+	
+	@POST
+	@Path("/recuperarSenha")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response recuperar(Email email) throws SQLException {
+		
+		String emailOrigen = email.getEmail();
+		
+		String verifica = email.enviarEmail(emailOrigen);
+		
+		if(email.getEmail().equals(emailOrigen)){
+			return Response.ok().type(verifica).build();
+		}else{	
+			
+			return Response.status(400).type(verifica).build();
+		}
+			
 	
 	}
 	

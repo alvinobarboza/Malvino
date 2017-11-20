@@ -47,6 +47,37 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		return retorno;
 	}
 	
+	public Jogadores recuperarSenha(String email) throws SQLException {
+		
+		PerfisDAO dao = new PerfisDAO();
+		Jogadores retorno = new Jogadores();
+		retorno.setEmail(" Email"+email+" não encontrado");
+		
+		String sql = "select * from malvino.jogadores j "
+				+ "where j.ds_email = ?";
+		
+		
+		PreparedStatement ps = getConnection().prepareStatement(sql);
+		ps.setString(1, email);
+		
+		ResultSet rs = ps.executeQuery() ;
+		
+		while(rs.next()){
+		
+			retorno.setIdJogador(rs.getInt("id_jogador"));
+			retorno.setPerfis(dao.getBean(rs.getInt("fk_perfil")));
+			retorno.setNome(rs.getString("ds_nome"));
+			retorno.setLogin(rs.getString("ds_login"));
+			retorno.setSenha(rs.getString("ds_senha"));
+			retorno.setEmail(rs.getString("ds_email"));
+			retorno.setGenero(rs.getString("ds_genero"));
+			retorno.getClas().setIdCla(rs.getInt("fk_cla"));
+			
+		}
+		
+		return retorno;
+	}
+	
 	public boolean login(String login, String senha) throws SQLException {
 
 		final Query query = session.createQuery("select j from Jogadores j where j.login  = :login and j.senha = :senha");
