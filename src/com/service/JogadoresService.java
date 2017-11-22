@@ -72,7 +72,7 @@ public class JogadoresService {
 	@Path("/Jogadores/{idJogador}") 
 	@Produces(MediaType.APPLICATION_JSON)
 	public Jogadores getJogador(@PathParam("idJogador") int codigo) {
-
+		
 		Jogadores jogador = getJogadoresDAO().getBean(codigo);
 
 		return getController().cloneToDTO(jogador);
@@ -106,10 +106,10 @@ public class JogadoresService {
 		String verifica = email.enviarEmail(emailOrigen);
 		
 		if(email.getEmail().equals(emailOrigen)){
-			return Response.ok().type(verifica).build();
+			return Response.ok().entity(verifica).build();
 		}else{	
 			
-			return Response.status(400).type(verifica).build();
+			return Response.status(400).entity(verifica).build();
 		}
 			
 	
@@ -131,6 +131,8 @@ public class JogadoresService {
 		}else{	
 			return Response.status(400).entity(teste).build();
 		}
+		
+		
 	}
 	
 	@PUT

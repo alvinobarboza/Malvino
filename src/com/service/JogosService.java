@@ -10,35 +10,35 @@ import javax.ws.rs.PathParam;
 public class JogosService {
 	
 	@GET
-	@Path("/T-rex/{i}")
-	public void trex(@PathParam("i") String logar) {
+	@Path("/T-rex/{i}/{x}")
+	public void trex(@PathParam("i") String logar,@PathParam("x") String x) {
 				
 		
-		System.out.println("high score T-rex: "+logar);
+		System.out.println("high score T-rex: "+logar+" ID: "+x);
 	
 	}
 	@GET
-	@Path("/JogoVelhaDerrota/{i}")
-	public void vDerrota(@PathParam("i") String logar) {
+	@Path("/JogoVelhaDerrota/{i}/{x}")
+	public void vDerrota(@PathParam("i") String logar, @PathParam("x") String x) {
 				
 		
-		System.out.println("Derrotas: "+logar);
+		System.out.println("Derrotas: "+logar+" ID: "+x);
 	
 	}
 	@GET
-	@Path("/JogoVelhaVitoria/{i}")
-	public void vVitoria(@PathParam("i") String logar) {
+	@Path("/JogoVelhaVitoria/{i}/{x}")
+	public void vVitoria(@PathParam("i") String logar, @PathParam("x") String x) {
 				
 		
-		System.out.println("Vitorias: "+logar);
+		System.out.println("Vitórias: "+logar+" ID: "+x);
 	
 	}
 	@GET
-	@Path("/JogoVelhaEmpate/{i}")
-	public void vEmpate(@PathParam("i") String logar) {
+	@Path("/JogoVelhaEmpate/{i}/{x}")
+	public void vEmpate(@PathParam("i") String logar, @PathParam("x") String x) {
 				
 		
-		System.out.println("Empates: "+logar);
+		System.out.println("Empates: "+logar+" ID: "+x);
 	
 	}
 }

@@ -878,10 +878,14 @@
         }
     };
     
+    var query = location.search.slice(1);
+    var partes = query.split('=');
+    var id = partes[1];
+    
     function sendScore(score){
 
 	    var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://malvinoservice.hopto.org:8080/Malvino/rest/ScoreGame/T-rex/"+score, true);
+		xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/T-rex/"+score+"/"+id, true);
 		xhttp.send();
 
     };
