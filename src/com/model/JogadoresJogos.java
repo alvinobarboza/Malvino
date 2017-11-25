@@ -42,16 +42,14 @@ public class JogadoresJogos extends BaseModel implements Serializable{
 	private int pontosRecorde;
 	
 	@Column(name="nu_tempo_recorde")
-	private Date tempoRecorde;
+	private String tempoRecorde;
 	
 	@Column(name="nu_tempo_jogo")
-	private Date tempoJogo;
+	private String tempoJogo;
 	
 	@Column(name="nu_pontos")
 	private int pontosTotais;
 	
-	@Column(name="dt_data_cadastro")
-	private Date dataRegistro;
 	
 
 	public Jogadores getJogador() {
@@ -89,22 +87,24 @@ public class JogadoresJogos extends BaseModel implements Serializable{
 	}
 
 	public void setPontosRecorde(int pontosRecorde) {
+		if(pontosRecorde>this.pontosRecorde){
 		this.pontosRecorde = pontosRecorde;
+		}
 	}
 
-	public Date getTempoRecorde() {
+	public String getTempoRecorde() {
 		return tempoRecorde;
 	}
 
-	public void setTempoRecorde(Date tempoRecorde) {
+	public void setTempoRecorde(String tempoRecorde) {
 		this.tempoRecorde = tempoRecorde;
 	}
 
-	public Date getTempoJogo() {
+	public String getTempoJogo() {
 		return tempoJogo;
 	}
 
-	public void setTempoJogo(Date tempoJogo) {
+	public void setTempoJogo(String tempoJogo) {
 		this.tempoJogo = tempoJogo;
 	}
 
@@ -113,10 +113,7 @@ public class JogadoresJogos extends BaseModel implements Serializable{
 	}
 
 	public void setPontosTotais(int pontosTotais) {
-		this.pontosTotais = pontosTotais;
+		this.pontosTotais = this.pontosTotais+pontosTotais;
 	}
 
-	public Date getDataRegistro() {
-		return dataRegistro;
-	}
 }

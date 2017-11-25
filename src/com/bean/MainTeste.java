@@ -1,23 +1,36 @@
 package com.bean;
 
-
 import java.sql.SQLException;
+import java.util.List;
 
-
+import com.dao.JogadoresDAO;
+import com.dao.JogadoresJogosDAO;
+import com.dao.JogosDAO;
+import com.model.Jogadores;
+import com.model.JogadoresJogos;
+import com.model.Jogos;
 
 public class MainTeste {
+	
+	
 	public static void main(String [] args) throws SQLException {
-		String[] carct ={"0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-
-	    String senha="";
-
-
-	    for (int x=0; x<10; x++){
-	        int j = (int) (Math.random()*carct.length);
-	        senha += carct[j];
-	    }
-	    
-	    System.out.println(senha);
+		JogadoresJogosDAO dao = new JogadoresJogosDAO();
+		JogadoresJogos teste = new JogadoresJogos();
+		
+		JogadoresDAO jogadoresDAO = new JogadoresDAO();
+		Jogadores jogadores = jogadoresDAO.getBean(1);
+		
+		JogosDAO jogosDAO = new JogosDAO();
+		Jogos jogos = jogosDAO.getBean(1);
+		
+		teste.setJogador(jogadores);
+		teste.setJogo(jogos);
+		
+		teste = dao.getBeanByExample(teste);
+		
+	
+			System.out.println(teste.getTempoJogo());
+	
 			
 	}
 }
