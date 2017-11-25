@@ -84,13 +84,17 @@ public class JogadoresService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response autenticar(Logar logar) throws SQLException {
-				
 		
-		if(getJogadoresDAO().login(logar.getLogin(),logar.getSenha())){
-			return Response.ok().entity(logar).build();
-		}else{	
-			logar.setLogin(logar.getLogin()+" Usuário não encontrado");
-			return Response.status(400).entity(logar).build();
+		Jogadores jogador = new Jogadores();
+		jogador =  getJogadoresDAO().login(logar.getLogin(),logar.getSenha());
+		
+		if(jogador.getLogin().equals(logar.getLogin())&&
+			jogador.getSenha().equals(logar.getSenha())){
+			
+			return Response.ok().entity(jogador).build();
+			
+		}else{				
+			return Response.status(400).entity(jogador).build();
 		}
 	
 	}
