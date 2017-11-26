@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.dao.JogosDAO;
-import com.model.Jogadores;
 import com.model.Jogos;
+import com.servicecontroller.RankingTemp;
 import com.servicecontroller.SalvarScore;
+import com.servicecontroller.ViewRanking;
 
 
 
@@ -23,10 +23,28 @@ public class JogosService {
 	private SalvarScore score;
 	private Jogos jogos;
 	private JogosDAO jogosDAO;
+	private ViewRanking viewRanking;
+
+	private int id;
+	private int ponto;
+	
+	private static int coeficiente = 1;
+	
+
 	
 	
-	
-	
+	public ViewRanking getViewRanking() {
+		if(viewRanking == null)
+			viewRanking = new ViewRanking();
+		return viewRanking;
+	}
+
+
+	public void setViewRanking(ViewRanking viewRanking) {
+		this.viewRanking = viewRanking;
+	}
+
+
 	public SalvarScore getScore() {
 		if(score == null)
 			score = new SalvarScore();
@@ -60,9 +78,6 @@ public class JogosService {
 		this.jogos = jogos;
 	}
 
-	private int id;
-	@SuppressWarnings("unused")
-	private int ponto;
 	
 	@GET 
 	@Path("/allGames") 
@@ -86,6 +101,30 @@ public class JogosService {
 		
 	}
 	
+	@GET 
+	@Path("/RankingGlobal/{jogo}") 
+	@Produces(MediaType.APPLICATION_JSON)
+	public RankingTemp[] getRankingGlobal(@PathParam("jogo") String jogo) throws SQLException {
+	//public void getRankingGlobal(@PathParam("jogo") String jogo) throws SQLException {
+	
+		List<RankingTemp> global = getViewRanking().rankingPorJogo(jogo);
+
+		RankingTemp[] dtoList = new RankingTemp[global.size()];
+
+		int i = 0;
+
+		for (RankingTemp item : global){			
+					
+			dtoList[i] = item;
+			
+			i++;
+		}
+
+		System.out.println(jogo);
+		return dtoList;
+		
+	}
+	
 
 
 	@GET
@@ -101,35 +140,39 @@ public class JogosService {
 	}
 	
 	@GET
-	@Path("/JogoVelhaDerrota/{i}/{x}")
-	public void vDerrota(@PathParam("i") String id, @PathParam("x") String x) {
+	@Path("/JogoVelhaVitoria/{i}")
+	public void vVitoria(@PathParam("i") String Id) throws SQLException {
 		
-		this.id = Integer.parseInt(id);
-		this.ponto = Integer.parseInt(x);		
+		this.id = Integer.parseInt(Id);
 		
-		System.out.println("Derrotas: "+id+" ID: "+x);
-	
+		this.ponto = 50*coeficiente;
+		
+		coeficiente = coeficiente+coeficiente;
+		
+		getScore().salvarPontos(id, ponto, "Jogo da Velha");
+		System.out.println("id: "+id+" pontos "+ponto);
 	}
 	
 	@GET
-	@Path("/JogoVelhaVitoria/{i}/{x}")
-	public void vVitoria(@PathParam("i") String id, @PathParam("x") String x) {
+	@Path("/JogoVelhaEmpate/{i}")
+	public void vEmpate(@PathParam("i") String Id) throws SQLException {
 		
-		this.id = Integer.parseInt(id);
-		this.ponto = Integer.parseInt(x);		
+		this.id = Integer.parseInt(Id);
 		
-		System.out.println("Vitórias: "+id+" ID: "+x);
-	
+		this.ponto = 10;
+		
+		getScore().salvarPontos(id, ponto, "Jogo da Velha");
+		
+		System.out.println("id: "+id+" pontos "+ponto);
+		coeficiente=1;
 	}
 	
 	@GET
-	@Path("/JogoVelhaEmpate/{i}/{x}")
-	public void vEmpate(@PathParam("i") String id, @PathParam("x") String x) {
-		
-		this.id = Integer.parseInt(id);
-		this.ponto = Integer.parseInt(x);		
-		
-		System.out.println("Empates: "+id+" ID: "+x);
-	
+	@Path("/JogoVelhaDerrota/{i}")
+	public void vDerrota(@PathParam("i") String Id) {
+		System.out.println(coeficiente);
+		coeficiente=1;
 	}
+
+
 }

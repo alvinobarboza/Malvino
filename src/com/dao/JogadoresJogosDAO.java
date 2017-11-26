@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.model.Clas;
 import com.model.Jogadores;
 import com.model.JogadoresJogos;
 import com.model.Jogos;
@@ -20,6 +21,9 @@ public class JogadoresJogosDAO extends HibernateDAO<JogadoresJogos>{
 		JogadoresJogos retorno = new JogadoresJogos();
 		Jogos jogo = new Jogos();
 		JogosDAO jogoDAO = new JogosDAO();
+		
+		Clas clas = new Clas();
+		ClasDAO clasDAO = new ClasDAO();
 
 		Jogadores jogador = new Jogadores();
 		JogadoresDAO jogadorDAO = new JogadoresDAO();
@@ -41,21 +45,19 @@ public class JogadoresJogosDAO extends HibernateDAO<JogadoresJogos>{
 		if (rs!=null) {
 			jogo = jogoDAO.getBean(jogadoresJogos.getJogo().getIdJogo());
 			jogador = jogadorDAO.getBean(jogadoresJogos.getJogador().getIdJogador());
+			clas = clasDAO.getBean(jogador.getClas().getIdCla());
 			
 			while(rs.next()){
 				
 				retorno.setJogo(jogo);
 				retorno.setJogador(jogador);
 				retorno.setPontosRecorde(rs.getInt("nu_qtd_pontos_recorde"));
-				retorno.setTempoRecorde(rs.getString("nu_tempo_recorde"));
-				retorno.setTempoJogo(rs.getString("nu_tempo_jogo"));
 				retorno.setPontosTotais(rs.getInt("nu_pontos"));
+				retorno.setCla(clas);
 								
 			}
 			
-		} else {
-
-		}
+		} 
 		
 		return retorno;
 	}

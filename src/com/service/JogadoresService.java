@@ -16,9 +16,9 @@ import javax.ws.rs.core.Response;
 
 import com.dao.JogadoresDAO;
 import com.model.Jogadores;
-import com.servicecontroller.Email;
+import com.servicecontroller.EmailController;
 import com.servicecontroller.JogadoresController;
-import com.servicecontroller.Logar;
+import com.servicecontroller.LogarController;
 
 
 
@@ -83,13 +83,13 @@ public class JogadoresService {
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response autenticar(Logar logar) throws SQLException {
+	public Response autenticar(LogarController logarController) throws SQLException {
 		
 		Jogadores jogador = new Jogadores();
-		jogador =  getJogadoresDAO().login(logar.getLogin(),logar.getSenha());
+		jogador =  getJogadoresDAO().login(logarController.getLogin(),logarController.getSenha());
 		
-		if(jogador.getLogin().equals(logar.getLogin())&&
-			jogador.getSenha().equals(logar.getSenha())){
+		if(jogador.getLogin().equals(logarController.getLogin())&&
+			jogador.getSenha().equals(logarController.getSenha())){
 			
 			return Response.ok().entity(jogador).build();
 			
@@ -103,13 +103,13 @@ public class JogadoresService {
 	@Path("/recuperarSenha")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response recuperar(Email email) throws SQLException {
+	public Response recuperar(EmailController emailController) throws SQLException {
 		
-		String emailOrigen = email.getEmail();
+		String emailOrigen = emailController.getEmail();
 		
-		String verifica = email.enviarEmail(emailOrigen);
+		String verifica = emailController.enviarEmail(emailOrigen);
 		
-		if(email.getEmail().equals(emailOrigen)){
+		if(emailController.getEmail().equals(emailOrigen)){
 			return Response.ok().entity(verifica).build();
 		}else{	
 			
@@ -124,7 +124,7 @@ public class JogadoresService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response salvar(Jogadores jogadores) {
 		
-		Logar teste = getController().verificaDuplicado(jogadores);
+		LogarController teste = getController().verificaDuplicado(jogadores);
 		
 		if(teste.getLogin().equals("ok")&&teste.getSenha().equals("ok")){
 			

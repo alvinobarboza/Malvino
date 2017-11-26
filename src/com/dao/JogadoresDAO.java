@@ -51,7 +51,7 @@ public class JogadoresDAO extends HibernateDAO<Jogadores> {
 		
 		PerfisDAO dao = new PerfisDAO();
 		Jogadores retorno = new Jogadores();
-		retorno.setEmail(" Email"+email+" não encontrado");
+		retorno.setEmail(" EmailController"+email+" não encontrado");
 		
 		String sql = "select * from malvino.jogadores j "
 				+ "where j.ds_email = ?";

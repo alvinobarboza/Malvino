@@ -9,7 +9,7 @@ public class JogadoresController {
 	
 	JogadoresDAO dao;
 	Jogadores temp;
-	Logar verifica;
+	LogarController verifica;
 	
 	public JogadoresDAO getDao() {
 		if(dao == null)
@@ -28,9 +28,9 @@ public class JogadoresController {
 		this.temp = temp;
 	}
 	
-	public Logar verificaDuplicado(Jogadores jogadores){
+	public LogarController verificaDuplicado(Jogadores jogadores){
 		
-		Logar resultado = new Logar();
+		LogarController resultado = new LogarController();
 		
 		List<Jogadores> list = getDao().getBeansByExample(jogadores);
 		

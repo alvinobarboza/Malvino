@@ -41,11 +41,6 @@ public class JogadoresJogos extends BaseModel implements Serializable{
 	@Column(name="nu_qtd_pontos_recorde")
 	private int pontosRecorde;
 	
-	@Column(name="nu_tempo_recorde")
-	private String tempoRecorde;
-	
-	@Column(name="nu_tempo_jogo")
-	private String tempoJogo;
 	
 	@Column(name="nu_pontos")
 	private int pontosTotais;
@@ -90,22 +85,6 @@ public class JogadoresJogos extends BaseModel implements Serializable{
 		if(pontosRecorde>this.pontosRecorde){
 		this.pontosRecorde = pontosRecorde;
 		}
-	}
-
-	public String getTempoRecorde() {
-		return tempoRecorde;
-	}
-
-	public void setTempoRecorde(String tempoRecorde) {
-		this.tempoRecorde = tempoRecorde;
-	}
-
-	public String getTempoJogo() {
-		return tempoJogo;
-	}
-
-	public void setTempoJogo(String tempoJogo) {
-		this.tempoJogo = tempoJogo;
 	}
 
 	public int getPontosTotais() {

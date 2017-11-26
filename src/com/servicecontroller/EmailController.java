@@ -12,7 +12,7 @@ import com.model.Jogadores;
 
 @ManagedBean
 @SessionScoped
-public class Email {
+public class EmailController {
 	
 	private String email;
 	private JogadoresDAO dao;

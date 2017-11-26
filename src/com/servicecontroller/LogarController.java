@@ -5,7 +5,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class Logar {
+public class LogarController {
 	private String login;
 	private String senha;
 	int teste;

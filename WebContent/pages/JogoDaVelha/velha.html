@@ -217,19 +217,24 @@
     
     function process() {
       logicOne();
+      
 		var xhttp = new XMLHttpRequest();
+		
       if (all == 1) { alert("Você ganhou, parabêns!"); wn++; 
-	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaVitoria/"+id+"/"+wn, true);
+	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaVitoria/"+id, true);
 		  xhttp.send();
       }
-      if (all == 2) { alert("Te peguei! Eu venci!"); ls++; 
-	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaDerrota/"+id+"/"+ls, true);
+      
+      if (all == 2) { alert("Te peguei! Eu venci!"); ls++;
+	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaDerrota/"+id, true);
 		  xhttp.send();
       }
+      
       if (all == 3) { alert("Empate não pega mal nem pra mim nem pra você. Vamos jogar denovo?"); ts++; 
-	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaEmpate/"+id+"/"+ts, true);
+	      xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/JogoVelhaEmpate/"+id, true);
 		  xhttp.send();
-     }
+      }
+      
 	if (all != 0) {
         document.game.you.value = wn;
         document.game.computer.value = ls;

@@ -2,14 +2,17 @@ package com.servicecontroller;
 
 import java.sql.SQLException;
 
+import com.dao.ClasDAO;
 import com.dao.JogadoresDAO;
 import com.dao.JogadoresJogosDAO;
 import com.dao.JogosDAO;
+import com.model.Clas;
 import com.model.Jogadores;
 import com.model.JogadoresJogos;
 import com.model.Jogos;
 
 public class SalvarScore {
+	
 	
 	private JogadoresDAO jogadoresDAO;
 	private JogosDAO jogosDAO;
@@ -19,9 +22,30 @@ public class SalvarScore {
 	private Jogos jogos;
 	private JogadoresJogos jogadoresJogos;
 	
+	private Clas clas;
+	private ClasDAO clasDAO;
 	
 	
-	
+	public Clas getClas() {
+		if(clas == null)
+			clas = new Clas();
+		return clas;
+	}
+
+	public void setClas(Clas clas) {
+		this.clas = clas;
+	}
+
+	public ClasDAO getClasDAO() {
+		if(clasDAO == null)
+			clasDAO = new ClasDAO();
+		return clasDAO;
+	}
+
+	public void setClasDAO(ClasDAO clasDAO) {
+		this.clasDAO = clasDAO;
+	}
+
 	public JogadoresDAO getJogadoresDAO() {
 		if(jogadoresDAO == null)
 			jogadoresDAO = new JogadoresDAO();
@@ -86,13 +110,12 @@ public class SalvarScore {
 	public void salvarPontos(int id, int score, String jogo) throws SQLException{
 		
 		setJogadores(getJogadoresDAO().getBean(id));
-		
 		setJogos(getJogosDAO().getBeanByName(jogo));
 		
 		getJogadoresJogos().setJogador(getJogadores());
 		getJogadoresJogos().setJogo(getJogos());
-		
-		
+				
+				
 		setJogadoresJogos(getJogadoresJogosDAO().getBeanByExample(getJogadoresJogos()));	
 	
 		if (getJogadoresJogos().getJogador().getNome()==null) {
@@ -102,26 +125,29 @@ public class SalvarScore {
 			getJogadoresJogos().setJogador(getJogadores());
 			getJogadoresJogos().setPontosRecorde(score);
 			getJogadoresJogos().setPontosTotais(score);
-			getJogadoresJogos().setTempoJogo("00:00:00");
-			getJogadoresJogos().setTempoRecorde("00:00:00");
+			
 			
 			getJogadoresJogosDAO().salvar(getJogadoresJogos());
 			getJogadoresJogosDAO().commit();
 			
+			System.out.println("Nome: "+getJogadoresJogos().getJogador().getNome()+"\n"+
+					"Pontuação: "+getJogadoresJogos().getPontosTotais()+"\n"+
+					"Jogo: "+getJogadoresJogos().getJogo().getNome()+"\n"+
+					"Cla: "+getJogadoresJogos().getCla().getNome());
 			
 		} else {
 			
 			getJogadoresJogos().setPontosRecorde(score);
 			getJogadoresJogos().setPontosTotais(score);
-			getJogadoresJogos().setTempoJogo("00:00:00");
-			getJogadoresJogos().setTempoRecorde("00:00:00");
+			
+			System.out.println("Nome: "+getJogadoresJogos().getJogador().getNome()+"\n"+
+								"Pontuação: "+getJogadoresJogos().getPontosTotais()+"\n"+
+								"Jogo: "+getJogadoresJogos().getJogo().getNome()+"\n"+
+								"Cla: "+getJogadoresJogos().getCla().getNome());
 			
 			getJogadoresJogosDAO().atualizar(getJogadoresJogos());
 			getJogadoresJogosDAO().commit();
 		}
-		
-		System.out.println(getJogadoresJogos().getJogador().getNome()+"---"+getJogadoresJogos().getJogo().getNome()
-				+" pontuação: "+getJogadoresJogos().getPontosRecorde());
 		
 	}
 	

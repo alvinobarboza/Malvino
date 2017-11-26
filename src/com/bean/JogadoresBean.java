@@ -193,7 +193,7 @@ public class JogadoresBean extends BaseBean implements IBO, ICRUDBean {
 		if (isNullOrEmpty(getJogadores().getSenha()) == true)
 			showAlert("Campo Senha é obrigatório");
 		if (isNullOrEmpty(getJogadores().getEmail()) == true)
-			showAlert("Campo Email é obrigatório");
+			showAlert("Campo EmailController é obrigatório");
 		if (getJogadores().getPerfis().getIdPerfil() == 0)
 			showAlert("Campo Perfis é obrigatório");
 		if (isNullOrEmpty(getJogadores().getGenero()) == true)
