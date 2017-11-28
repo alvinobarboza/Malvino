@@ -18,7 +18,7 @@ public class MainTeste {
 	public static void main(String [] args) throws SQLException {
 		ViewRanking ranking = new ViewRanking();
 		
-		List<RankingTemp> teste = ranking.rankingPorJogo("Jogo da Velha");
+		List<RankingTemp> teste = ranking.rankingGlobal();
 		
 		for(RankingTemp item : teste){
 			System.out.println(item.getPontos());

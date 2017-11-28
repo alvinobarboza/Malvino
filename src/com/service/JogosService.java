@@ -102,12 +102,12 @@ public class JogosService {
 	}
 	
 	@GET 
-	@Path("/RankingGlobal/{jogo}") 
+	@Path("/RankingGlobal") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public RankingTemp[] getRankingGlobal(@PathParam("jogo") String jogo) throws SQLException {
+	public RankingTemp[] getRankingPorJogo() throws SQLException {
 	//public void getRankingGlobal(@PathParam("jogo") String jogo) throws SQLException {
 	
-		List<RankingTemp> global = getViewRanking().rankingPorJogo(jogo);
+		List<RankingTemp> global = getViewRanking().rankingGlobal();
 
 		RankingTemp[] dtoList = new RankingTemp[global.size()];
 
@@ -118,31 +118,40 @@ public class JogosService {
 			dtoList[i] = item;
 			
 			i++;
+			System.out.println(item.getNome());
 		}
 
-		System.out.println(jogo);
 		return dtoList;
 		
 	}
-	
 
 
 	@GET
 	@Path("/T-rex/{i}/{x}")
 	public void trex(@PathParam("i") String Id,@PathParam("x") String x) throws SQLException {
 		
-		this.id = Integer.parseInt(Id);
-		this.ponto = Integer.parseInt(x);
+		if(Id.equals("undefined")||Id == null){
+			System.out.println("teste");
+		}else{
+			
+			this.id = Integer.parseInt(Id);
+			this.ponto = Integer.parseInt(x);
+			
+			getScore().salvarPontos(id, ponto, "T-Rex");
+			
+			System.out.println("high score T-rex: "+this.id+" ID: "+x);
+			
+		}
 		
-		getScore().salvarPontos(id, ponto, "T-Rex");
-		
-		System.out.println("high score T-rex: "+this.id+" ID: "+x);
 	}
 	
 	@GET
 	@Path("/JogoVelhaVitoria/{i}")
 	public void vVitoria(@PathParam("i") String Id) throws SQLException {
 		
+		if(Id.equals("undefined")||Id == null){
+			System.out.println("teste");
+		}else{
 		this.id = Integer.parseInt(Id);
 		
 		this.ponto = 50*coeficiente;
@@ -151,11 +160,16 @@ public class JogosService {
 		
 		getScore().salvarPontos(id, ponto, "Jogo da Velha");
 		System.out.println("id: "+id+" pontos "+ponto);
+		}
 	}
 	
 	@GET
 	@Path("/JogoVelhaEmpate/{i}")
 	public void vEmpate(@PathParam("i") String Id) throws SQLException {
+		
+		if(Id.equals("undefined")||Id == null){
+			System.out.println("teste");
+		}else{
 		
 		this.id = Integer.parseInt(Id);
 		
@@ -165,6 +179,7 @@ public class JogosService {
 		
 		System.out.println("id: "+id+" pontos "+ponto);
 		coeficiente=1;
+		}
 	}
 	
 	@GET

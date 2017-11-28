@@ -33,7 +33,6 @@ public class CategoriaPublicidadeDAO extends HibernateDAO<CategoriaPublicidade>{
 		
 			retorno.setPublicidades(publicidadesDAO.getBean(rs.getInt("pfk_publicidade")));
 			retorno.setCategorias(categoriasDAO.getBean(rs.getInt("pfk_categoria")));
-			retorno.setDataRegistro(rs.getDate("dt_data_cadastro"));
 			
 			
 		}

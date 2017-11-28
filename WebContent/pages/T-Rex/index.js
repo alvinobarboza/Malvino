@@ -885,7 +885,7 @@
     function sendScore(score){
 
 	    var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://localhost:8080/Malvino/rest/ScoreGame/T-rex/"+id+"/"+score, true);
+		xhttp.open("GET", "http://192.168.1.12:8080/Malvino/rest/ScoreGame/T-rex/"+id+"/"+score, true);
 		xhttp.send();
 
     };

@@ -31,8 +31,6 @@ public class CategoriaPublicidade extends BaseModel implements Serializable{
 	@JoinColumn(name = "pfk_categoria")
 	private Categorias categorias;
 	
-	@Column(name="dt_data_cadastro")
-	private Date dataRegistro;
 
 	public Publicidades getPublicidades() {
 		if(publicidades == null)
@@ -54,11 +52,4 @@ public class CategoriaPublicidade extends BaseModel implements Serializable{
 		this.categorias = categoria;
 	}
 
-	public void setDataRegistro(Date dataRegistro) {
-		this.dataRegistro = dataRegistro;
-	}
-
-	public Date getDataRegistro() {
-		return dataRegistro;
-	}
 }

@@ -31,9 +31,6 @@ public class JogosCategoria extends BaseModel implements Serializable{
 	@JoinColumn(name = "pfk_categoria")
 	private Categorias categorias;
 	
-	@Column(name="dt_data_cadastro")
-	private Date dataRegistro;
-	
 	public Jogos getJogos() {
 		if(jogos == null)
 			jogos = new Jogos();
@@ -42,10 +39,6 @@ public class JogosCategoria extends BaseModel implements Serializable{
 
 	public void setJogos(Jogos jogo) {
 		this.jogos = jogo;
-	}
-
-	public void setDataRegistro(Date dataRegistro) {
-		this.dataRegistro = dataRegistro;
 	}
 
 	public Categorias getCategorias() {
@@ -58,7 +51,4 @@ public class JogosCategoria extends BaseModel implements Serializable{
 		this.categorias = categoria;
 	}
 
-	public Date getDataRegistro() {
-		return dataRegistro;
-	}
 }

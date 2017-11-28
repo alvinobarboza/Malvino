@@ -31,8 +31,6 @@ public class JogosPublicidade extends BaseModel implements Serializable {
 	@JoinColumn(name = "pfk_publicidade")
 	private Publicidades publicidades;
 	
-	@Column(name="dt_data_cadastro")
-	private Date dataRegistro;
 	
 	public Jogos getJogo() {
 		if(jogos == null)
@@ -42,10 +40,6 @@ public class JogosPublicidade extends BaseModel implements Serializable {
 
 	public void setJogo(Jogos jogo) {
 		this.jogos = jogo;
-	}
-	
-	public Date getDataRegistro() {
-		return dataRegistro;
 	}
 
 	public Publicidades getPublicidade() {

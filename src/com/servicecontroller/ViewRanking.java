@@ -11,42 +11,36 @@ import org.apache.poi.ss.formula.functions.T;
 import com.dao.HibernateDAO;
 
 public class ViewRanking extends HibernateDAO<T>{
-	
-	
+
+
+
 	public ViewRanking() {
 		super(T.class);
 	}
 	
-	public List<RankingTemp> rankingPorJogo(String jogo) throws SQLException{
+	public List<RankingTemp> rankingGlobal() throws SQLException{
 		
-		int i = 0;
 		List<RankingTemp> retorno = new ArrayList<RankingTemp>();
 		
-		String sql = "select h.ds_nome as Jogo,j.ds_nome as Jogador, r.nu_qtd_pontos_recorde as Recorde "
-				+ "from malvino.jogadores_jogos r "
-				+ "inner join malvino.jogadores j on r.pfk_jogador = j.id_jogador "
-				+ "inner join malvino.jogos h on r.pfk_jogo = h.id_jogo "
-				+ "where h.ds_nome = ? "
-				+ "order by r.nu_qtd_pontos_recorde desc";
+		String sql = "select sum(r.nu_pontos) as Recorde, j.ds_nome as Jogador "
+				+"from malvino.jogadores_jogos r "
+				+"inner join malvino.jogadores j on r.pfk_jogador = j.id_jogador "
+				+"group by j.ds_nome "
+                +"order by sum(r.nu_pontos) desc";
 		
 		
-		PreparedStatement ps = getConnection().prepareStatement(sql);
-		ps.setString(1, jogo);
-		
-		
+		PreparedStatement ps = getConnection().prepareStatement(sql);		
 		ResultSet rs = ps.executeQuery() ;
 		
 		while(rs.next()){
 			
 			RankingTemp ranking = new RankingTemp();
 			
-			ranking.setJogo(rs.getString("jogo"));
 			ranking.setNome(rs.getString("jogador"));
 			ranking.setPontos(rs.getInt("recorde"));
 			
 			retorno.add(ranking);
 			System.out.println(ranking.getPontos());
-			i++;
 		}
 		
 		

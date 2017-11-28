@@ -32,7 +32,6 @@ public class JogosCategoriaDAO extends HibernateDAO<JogosCategoria>{
 		
 			retorno.setJogos(jogosDAO.getBean(rs.getInt("pfk_jogo")));
 			retorno.setCategorias(categoriasDAO.getBean(rs.getInt("pfk_categoria")));
-			retorno.setDataRegistro(rs.getDate("dt_data_cadastro"));
 			
 			
 		}
