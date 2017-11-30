@@ -1,5 +1,6 @@
 package com.bean;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -111,7 +112,12 @@ public class JogadoresBean extends BaseBean implements IBO, ICRUDBean {
 			Jogadores bean = new Jogadores();
 			bean.setNome(getJogadores().getNome());
 			
-			listJogadores = getJogadoresDAO().getBeansByExample(bean);
+			try {
+				listJogadores = getJogadoresDAO().getByName(bean);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			listJogadores = getJogadoresDAO().getBeans();
 		}

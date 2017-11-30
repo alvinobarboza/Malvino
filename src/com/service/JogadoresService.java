@@ -122,11 +122,13 @@ public class JogadoresService {
 	@POST
 	@Path("/Salvar")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response salvar(Jogadores jogadores) {
+	public Response salvar(Jogadores jogadores) throws SQLException {
 		
 		LogarController teste = getController().verificaDuplicado(jogadores);
 		
 		if(teste.getLogin().equals("ok")&&teste.getSenha().equals("ok")){
+			
+			System.out.println("passou");
 			
 			getJogadoresDAO().salvar(jogadores);
 			getJogadoresDAO().commit();

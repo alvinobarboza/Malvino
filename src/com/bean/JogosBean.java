@@ -1,5 +1,6 @@
 package com.bean;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -85,7 +86,12 @@ public class JogosBean extends BaseBean implements IBO, ICRUDBean {
 			Jogos bean = new Jogos();
 			bean.setNome(getJogos().getNome());
 			
-			listJogos = getJogosDAO().getBeansByExample(bean);
+			try {
+				listJogos = getJogosDAO().getByName(bean);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			listJogos = getJogosDAO().getBeans();
 		}

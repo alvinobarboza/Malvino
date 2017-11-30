@@ -54,7 +54,7 @@ public class LoginBean extends BaseBean {
 
 	public String autenticar() {
 		try {
-			Jogadores idJogador = getJogadoresDAO().existOne(getLogin(), getSenha());
+			Jogadores idJogador = getJogadoresDAO().login(getLogin(), getSenha());
 			System.out.println(idJogador.getPerfis().getNome());
 			if (idJogador.getIdJogador() == 0) {
 				showInfo("Jogadores e/ou senha inválidos");

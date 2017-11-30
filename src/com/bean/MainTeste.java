@@ -3,28 +3,24 @@ package com.bean;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.dao.JogadoresDAO;
-import com.dao.JogadoresJogosDAO;
-import com.dao.JogosDAO;
-import com.model.Jogadores;
-import com.model.JogadoresJogos;
-import com.model.Jogos;
-import com.servicecontroller.RankingTemp;
-import com.servicecontroller.ViewRanking;
+import com.dao.*;
+import com.model.*;
 
 public class MainTeste {
 	
 	
 	public static void main(String [] args) throws SQLException {
-		ViewRanking ranking = new ViewRanking();
+		Jogos j = new Jogos();
+		JogosDAO dao = new JogosDAO();
 		
-		List<RankingTemp> teste = ranking.rankingGlobal();
+		j.setNome("v");
 		
-		for(RankingTemp item : teste){
-			System.out.println(item.getPontos());
+		List<Jogos> list = dao.getByName(j);
+		
+		for(Jogos item : list){
+			System.out.println(item.getNome());
 		}
 		
-
 			
 	}
 }

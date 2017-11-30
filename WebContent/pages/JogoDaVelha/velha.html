@@ -10,11 +10,11 @@
 
   <script language="JavaScript">
 
-    var x = "http://192.168.1.12:8080/Malvino/resources/imagens/X.png";
+    var x = "http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/X.png";
 
-    var o = "http://192.168.1.12:8080/Malvino/resources/imagens/O.png";
+    var o = "http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/O.png";
 
-    var blank = "http://192.168.1.12:8080/Malvino/resources/imagens/branco.png";
+    var blank = "http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png";
 
     var pause = 0;
     var all = 0;
@@ -221,17 +221,17 @@
 		var xhttp = new XMLHttpRequest();
 		
       if (all == 1) { alert("Você ganhou, parabêns!"); wn++; 
-	      xhttp.open("GET", "http://192.168.1.12:8080/Malvino/rest/ScoreGame/JogoVelhaVitoria/"+id, true);
+	      xhttp.open("GET", "http://malvinoservice.hopto.org:8080/Malvino/rest/ScoreGame/JogoVelhaVitoria/"+id, true);
 		  xhttp.send();
       }
       
       if (all == 2) { alert("Te peguei! Eu venci!"); ls++;
-	      xhttp.open("GET", "http://192.168.1.12:8080/Malvino/rest/ScoreGame/JogoVelhaDerrota/"+id, true);
+	      xhttp.open("GET", "http://malvinoservice.hopto.org:8080/Malvino/rest/ScoreGame/JogoVelhaDerrota/"+id, true);
 		  xhttp.send();
       }
       
       if (all == 3) { alert("Empate não pega mal nem pra mim nem pra você. Vamos jogar denovo?"); ts++; 
-	      xhttp.open("GET", "http://192.168.1.12:8080/Malvino/rest/ScoreGame/JogoVelhaEmpate/"+id, true);
+	      xhttp.open("GET", "http://malvinoservice.hopto.org:8080/Malvino/rest/ScoreGame/JogoVelhaEmpate/"+id, true);
 		  xhttp.send();
       }
       
@@ -283,7 +283,7 @@
 </head>
 
 
-<body background="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png">
+<body background="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png">
 
   <center>
     <form name="game" action="javascript:window.close()">
@@ -294,18 +294,18 @@
               <td style="border-left-width: 1; border-right-style: solid; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1"
                 bordercolor="#000000">
                 <a href="javascript:yourChoice('A')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border="0" height="100" width="100" name="A" alt="Top-Left">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border="0" height="100" width="100" name="A" alt="Top-Left">
                 </a>
               </td>
               <td bordercolor="#000000">
                 <a href="javascript:yourChoice('B')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=B alt="Top-Center">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=B alt="Top-Center">
                 </a>
               </td>
               <td style="border-left-style: solid; border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1"
                 bordercolor="#000000">
                 <a href="javascript:yourChoice('C')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=C alt="Top-Right">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=C alt="Top-Right">
                 </a>
               </td>
             </tr>
@@ -313,19 +313,19 @@
               <td style="border-left-width: 1; border-right-style: solid; border-right-width: 1; border-top-width: 1; border-bottom-width: 1"
                 bordercolor="#000000">
                 <a href="javascript:yourChoice('D')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=D alt="Middle-Left">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=D alt="Middle-Left">
                 </a>
               </td>
               <td style="border-left-width: 1; border-right-width: 1; border-top-style: solid; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1"
                 bordercolor="#000000">
                 <a href="javascript:yourChoice('E')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=E alt="Middle-Center">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=E alt="Middle-Center">
                 </a>
               </td>
               <td style="border-left-style: solid; border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-width: 1"
                 bordercolor="#000000">
                 <a href="javascript:yourChoice('F')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=F alt="Middle-Right">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=F alt="Middle-Right">
                 </a>
               </td>
             </tr>
@@ -333,18 +333,18 @@
               <td style="border-left-width: 1; border-right-style: solid; border-right-width: 1; border-top-style: solid; border-top-width: 1"
                 bordercolor="#000000">
                 <a href="javascript:yourChoice('G')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=G alt="Bottom-Left">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=G alt="Bottom-Left">
                 </a>
               </td>
               <td>
                 <a href="javascript:yourChoice('H')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=H alt="Bottom-Center">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=H alt="Bottom-Center">
                 </a>
               </td>
               <td style="border-left-style: solid; border-left-width: 1; border-right-width: 1; border-top-style: solid; border-top-width: 1; border-bottom-width: 1"
                 bordercolor="#000000">
                 <a href="javascript:yourChoice('I')">
-                  <img src="http://192.168.1.12:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=I alt="Bottom-Right">
+                  <img src="http://malvinoservice.hopto.org:8080/Malvino/resources/imagens/branco.png" border=0 height=100 width=100 name=I alt="Bottom-Right">
                 </a>
               </td>
             </tr>
