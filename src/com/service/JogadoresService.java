@@ -107,13 +107,16 @@ public class JogadoresService {
 		
 		String emailOrigen = emailController.getEmail();
 		
-		String verifica = emailController.enviarEmail(emailOrigen);
+		boolean verifica = emailController.enviarEmail(emailOrigen);
 		
-		if(emailController.getEmail().equals(emailOrigen)){
-			return Response.ok().entity(verifica).build();
+		String mensagem;
+		
+		if(verifica){
+			mensagem = "Email enviado com sucesso!";
+			return Response.ok().entity(mensagem).build();
 		}else{	
-			
-			return Response.status(400).entity(verifica).build();
+			mensagem = "Email não encontrado";
+			return Response.status(400).entity(mensagem).build();
 		}
 			
 	
@@ -132,7 +135,7 @@ public class JogadoresService {
 			
 			getJogadoresDAO().salvar(jogadores);
 			getJogadoresDAO().commit();
-			return Response.ok().entity("ok").build();
+			return Response.ok().entity(teste.getLogin()).build();
 			
 		}else{	
 			return Response.status(400).entity(teste).build();
@@ -149,7 +152,7 @@ public class JogadoresService {
 		getJogadoresDAO().atualizar(jogadores);
 		getJogadoresDAO().commit();
 		
-		return Response.ok().build();
+		return Response.ok().entity(jogadores).build();
 
 	}
 	

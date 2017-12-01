@@ -54,7 +54,7 @@ public class EmailController {
 	    String senha="";
 
 
-	    for (int x=0; x<10; x++){
+	    for (int x=0; x<8; x++){
 	        int j = (int) (Math.random()*carct.length);
 	        senha += carct[j];
 	    }
@@ -62,7 +62,9 @@ public class EmailController {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public String enviarEmail(String destino) throws SQLException{
+	public boolean enviarEmail(String destino) throws SQLException{
+		boolean validator = false;
+		
 		SimpleEmail email = new SimpleEmail();  
 		
 		setSolicitante(getDao().recuperarSenha(destino));
@@ -83,14 +85,15 @@ public class EmailController {
 			      email.setFrom("malvinoTeste@gmail.com"); //será passado o email que você fará a autenticação 
 			      email.setSubject("Recuperação de senha");  
 			      email.setMsg("Olá, "+getSolicitante().getNome()+" \n Sua nova senha é: "+getSolicitante().getSenha());  
-			      email.send();  
+			      email.send(); 
+			      
+			      validator = true;
 	
 			} catch (EmailException e) {  
 	
 				System.out.println(e.getMessage());
 			}
 		}
-		destino = getSolicitante().getEmail();
-		return destino;
+		return validator;
 	}
 }

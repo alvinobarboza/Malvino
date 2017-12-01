@@ -22,10 +22,10 @@ public class ViewRanking extends HibernateDAO<T>{
 		
 		List<RankingTemp> retorno = new ArrayList<RankingTemp>();
 		
-		String sql = "select sum(r.nu_pontos) as Recorde, j.ds_nome as Jogador "
+		String sql = "select sum(r.nu_pontos) as Recorde, j.ds_login as Jogador "
 				+"from malvino.jogadores_jogos r "
 				+"inner join malvino.jogadores j on r.pfk_jogador = j.id_jogador "
-				+"group by j.ds_nome "
+				+"group by j.ds_login "
                 +"order by sum(r.nu_pontos) desc";
 		
 		

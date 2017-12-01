@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.model.Jogadores;
 import com.model.Jogos;;
 
 public class JogosDAO extends HibernateDAO<Jogos> {
