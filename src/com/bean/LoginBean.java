@@ -56,13 +56,14 @@ public class LoginBean extends BaseBean {
 		try {
 			Jogadores idJogador = getJogadoresDAO().login(getLogin(), getSenha());
 			System.out.println(idJogador.getPerfis().getNome());
-			if (idJogador.getIdJogador() == 0) {
-				showInfo("Jogadores e/ou senha inválidos");
-				return null;
-			} else {
+			if (idJogador.getIdJogador() == 1) {
 				setJogadores(2);
 				showInfo("Usuário autenticado com sucesso!");
 				return "/pages/jogadores/list.xhtml?faces-redirect=true";
+				
+			} else {
+				showInfo("Jogadores e/ou senha inválidos");
+				return null;
 			}
 
 		} catch (Exception ex) {
